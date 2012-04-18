@@ -22,11 +22,9 @@ enum bonus {
 typedef struct {
 	Bool ouvert;
 	enum tresor t;
-	union contenu {
-		int po;
-		enum bonus B;
-  } contenu;
-}coffre;
+	int po;
+	enum bonus B;
+}str_coffre,*coffre;
 //fin coffre
 
 
