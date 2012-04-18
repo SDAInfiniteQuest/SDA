@@ -2,11 +2,11 @@
 #define __univers_h_
 #include "salle.h"
 
-typedef struct univ {
+typedef struct Univ {
 	salle s;
-	struct univ *droite;
-	struct univ *gauche;
-} *univ, strUniv;
+	struct Univ *droite;
+	struct Univ *gauche;
+} *univ,strUniv;
 
 univ initUniv();
 univ elmtGauche(univ);
