@@ -7,6 +7,7 @@ univ initUniv() {
 	depart->s=creerSalle();
 	depart->droite=NULL;
 	depart->gauche=NULL;
+  remplirSalle(depart->s);
 	return depart;
 }
 
