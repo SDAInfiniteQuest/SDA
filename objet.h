@@ -46,6 +46,8 @@ typedef struct {
 typedef struct {
     int HP;
     char * nom;
+		int x;
+		int y;
     inventaire invHero;
 } *hero, strHero;
 //fin hero
