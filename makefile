@@ -1,4 +1,4 @@
-main:main.o salle.o graphics.o univers.o combat.o global.o
+main:main.o salle.o graphics.o univers.o combat.o global.o inventaire.o
 	gcc -o test $^
 
 main.o:main.c
@@ -15,5 +15,12 @@ univers.o: univers.c salle.h univers.h
 
 combat.o: combat.c objet.h combat.h
 	gcc -Wall -g -c combat.c
+
 global.o:global.c global.h graphics.h
 	gcc -Wall -g -c global.c
+
+inventaire.o:inventaire.c inventaire.h global.h
+	gcc -Wall -g -c inventaire.c
+
+clean:
+	rm *.o test

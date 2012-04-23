@@ -5,8 +5,6 @@
 #include "global.h"
 #include "inventaire.h"
 
-#define TAILLE_INVENTAIRE 50
-#define NOMBRE_DE_CARTES 10
 
 //coffre
 enum tresor {

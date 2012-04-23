@@ -44,4 +44,5 @@ salle creerSalle();
 salle remplirSalle(salle s/* monstre* tableau_des_monstre*/);                          
 void detruireSalle(salle s);
 void afficheSalle(salle s);
+monstre deplacement(hero h,salle s,int entree);
 #endif

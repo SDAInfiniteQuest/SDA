@@ -52,12 +52,12 @@ inventaire supprQte(inventaire, type, int);
 int existe(inventaire, type);
 int quantite(inventaire, type);
 int nombreRef(inventaire);
-
+/*
 //objets de base de l'inventaire
 potion soin = { POTION, 1, "potion de soin", 30 };
 carte fantassin = { CARTE, 20, "fantassin", 2, 3, 2 };
 carte guerrier = { CARTE, 21, "guerrier", 6, 8, 6 };
 carte barbare = { CARTE, 22, "barbare", 10,7, 3 };
 carte tour = { CARTE, 23, "tour", 30, 4, 0 };
-
+*/
 #endif

@@ -139,3 +139,89 @@ void detruireSalle(salle s){
 	free(s->z);
 	free(s);
 	}
+
+monstre deplacement(hero h,salle s,int entree){
+	if(h->y<s->taille-2){
+		if(entree==TOUCHE_FLECHE_BAS){
+			if (s->z[h->x][h->y+1].obj==MONSTRE)
+					return s->z[h->x][h->y+1].mobs;
+			else 
+				return NULL;
+			
+			s->z[h->x][h->y].obj=NEUTRE;
+			s->z[h->x][h->y].H=NULL;
+			s->z[h->x][h->y+1].obj=HERO;		
+			s->z[h->x][h->y+1].H=h;
+			h->y=h->y+1;
+		}
+	}
+	else 
+		if(h->y>2){
+			if(entree==TOUCHE_FLECHE_HAUT){
+				if (s->z[h->x][h->y+1].obj==MONSTRE)
+					return s->z[h->x][h->y+1].mobs;
+				else 
+					return NULL;
+				
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+				s->z[h->x][h->y-1].obj=HERO;		
+				s->z[h->x][h->y-1].H=h;		
+				h->y=h->y-1;
+			}
+		}
+	else
+		if(h->x<s->taille-2){
+			if(entree==TOUCHE_FLECHE_DROITE){
+				if (s->z[h->x][h->y+1].obj==MONSTRE)
+					return s->z[h->x][h->y+1].mobs;
+				else 
+					return NULL;
+				
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+				s->z[h->x+1][h->y].obj=HERO;		
+				s->z[h->x+1][h->y].H=h;		
+				h->x=h->x+1;
+			}
+		}
+	else 
+		if(h->x<2){
+			if(entree==TOUCHE_FLECHE_GAUCHE){
+				if (s->z[h->x][h->y+1].obj==MONSTRE)
+					return s->z[h->x][h->y+1].mobs;
+				else 
+					return NULL;
+				
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+				s->z[h->x-1][h->y].obj=HERO;		
+				s->z[h->x-1][h->y].H=h;		
+				h->x=h->x-1;
+			}
+		}
+	else 
+		if(entree==TOUCHE_FLECHE_GAUCHE){
+			if(h->x-1==0 && h->y==s->taille/2){
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+
+				s->z[h->x-1][h->y].obj=HERO;		
+				s->z[h->x-1][h->y].H=h;		
+				h->x=h->x-1;
+			}
+		}
+		else if(entree==TOUCHE_FLECHE_DROITE){
+			if(h->x+1==s->taille-1 && h->y==s->taille/2){
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+
+				s->z[h->x+1][h->y].obj=HERO;		
+				s->z[h->x+1][h->y].H=h;		
+				h->x=h->x+1;
+			}
+		}
+	return NULL;			
+}
+
+		

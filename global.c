@@ -101,21 +101,21 @@ int menu(){
 	SePositionner(33,12);
 	printf(" ");
 	/*E*/
-	SePositionner(35,10);
-	printf(" ");
 	SePositionner(36,10);
 	printf(" ");
 	SePositionner(37,10);
 	printf(" ");
-	SePositionner(35,11);
+	SePositionner(38,10);
 	printf(" ");
 	SePositionner(36,11);
 	printf(" ");
-	SePositionner(35,12);
+	SePositionner(37,11);
 	printf(" ");
 	SePositionner(36,12);
 	printf(" ");
 	SePositionner(37,12);
+	printf(" ");
+	SePositionner(38,12);
 	printf(" ");
 	/*A la ligne*/
 	/*Q*/

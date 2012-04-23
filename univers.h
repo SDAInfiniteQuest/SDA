@@ -11,6 +11,6 @@ typedef struct Univ {
 univ initUniv();
 univ elmtGauche(univ);
 univ elmtDroite(univ);
-
+univ changement_salle(hero h,salle s,univ univers);
 #endif
 
