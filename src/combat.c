@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "objet.h"
-#include "combat.h"
+#include"combat.h"
 
 paquet paquetVide() {
 	return NULL;

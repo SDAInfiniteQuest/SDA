@@ -1,6 +1,9 @@
-#ifndef __combat_h_
-#define __combat_h_
+#ifndef _combat_h_
+#define _combat_h_
+#include<stdlib.h>
+#include<stdio.h>
 #include "objet.h"
+
 
 typedef struct str_paquet {
 	carte card;

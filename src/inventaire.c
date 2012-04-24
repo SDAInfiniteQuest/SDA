@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "inventaire.h"
+#include"inventaire.h"
 
 inventaire stockVide() {
 	inventaire inv=(inventaire) calloc(1,sizeof(str_inventaire));

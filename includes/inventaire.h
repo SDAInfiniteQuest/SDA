@@ -1,6 +1,7 @@
-#ifndef __inventaire_h_
-#define __inventaire_h_
-#include "global.h"
+#ifndef _inventaire_h_
+#define inventaire_h_
+#include<stdio.h>
+#include<stdlib.h>
 
 #define TAILLE_INVENTAIRE 50
 #define NOMBRE_DE_CARTES 10

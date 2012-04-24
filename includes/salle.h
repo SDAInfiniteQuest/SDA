@@ -1,7 +1,8 @@
-#ifndef __salle_h_
-#define __salle_h_
+#ifndef _salle_h_
+#define _salle_h_
 #include "objet.h"
 #include "graphics.h" 
+#include "global.h" 
 
 #define MIN_TAILLE 5      // Taille minimal des salles
 #define MAX_TAILLE 15      //Taille maximal des salles
@@ -19,8 +20,8 @@ enum terrain {
 
 enum objet {
 	HERO,
-	MONSTRE,
-	COFFRE,
+	MONSTRES,
+	COFFRES,
 	NEUTRE         // Sinon toutes les cases sont forcement soit des monstres soit des heros soit des coffres
 };
 
@@ -44,5 +45,8 @@ salle creerSalle();
 salle remplirSalle(salle s/* monstre* tableau_des_monstre*/);                          
 void detruireSalle(salle s);
 void afficheSalle(salle s);
-monstre deplacement(hero h,salle s,int entree);
+void insererHero(salle s,hero h);
+Bool deplacement(hero h,salle s,int entree);
+void OuvrirCoffre(salle s,hero h);
+monstre CasseMonstre(salle s, hero h);
 #endif

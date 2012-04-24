@@ -64,8 +64,8 @@ salle remplirSalle(salle s/* monstre* tableau_des_monstre*/){                   
 	}
 
 /*Creer les portes*/	
-		s->z[s->taille/2][0].ter=1;           // Ouverture a gauche
-		s->z[s->taille/2][s->taille-1].ter=1; // Ouverture a droite
+		s->z[0][s->taille/2].ter=1;           // Ouverture a gauche
+		s->z[s->taille-1][s->taille/2].ter=1; // Ouverture a droite
 		
 /* placements et choix des monstres*/		
 	for(i=monstre;i>0;i--){
@@ -91,6 +91,8 @@ salle remplirSalle(salle s/* monstre* tableau_des_monstre*/){                   
 return s;
 }
 
+
+/*Affichage d'une salle*/
 void afficheSalle(salle s){
 int i=0,v=0;
 EffacerEcran();
@@ -128,100 +130,119 @@ EffacerEcran();
 	}
 	ReinitialiserCouleur();
 }
-
+/*Free d'une salle et de sa matrice associe*/
 void detruireSalle(salle s){
-	int i;
+	int i,v;
 
 	for (i=0;i<s->taille;i++){
 		free(s->z[i]);
 	}
-
+	
 	free(s->z);
 	free(s);
-	}
-
-monstre deplacement(hero h,salle s,int entree){
-	if(h->y<s->taille-2){
-		if(entree==TOUCHE_FLECHE_BAS){
-			if (s->z[h->x][h->y+1].obj==MONSTRE)
-					return s->z[h->x][h->y+1].mobs;
-			else 
-				return NULL;
-			
+}
+/*Fonction de deplacement du hero qui renvoie vrai si l'entree correspond a un mouvement */
+Bool deplacement(hero h,salle s,int entree){
+	/*Deplacement vers le bas*/
+	if(entree==TOUCHE_FLECHE_BAS){
+		if(h->y<s->taille-2){
 			s->z[h->x][h->y].obj=NEUTRE;
 			s->z[h->x][h->y].H=NULL;
 			s->z[h->x][h->y+1].obj=HERO;		
 			s->z[h->x][h->y+1].H=h;
 			h->y=h->y+1;
+			return vrai;
 		}
 	}
-	else 
-		if(h->y>2){
-			if(entree==TOUCHE_FLECHE_HAUT){
-				if (s->z[h->x][h->y+1].obj==MONSTRE)
-					return s->z[h->x][h->y+1].mobs;
-				else 
-					return NULL;
-				
+	else
+		/*Deplacement vers le haut*/
+		if(entree==TOUCHE_FLECHE_HAUT){
+			if(h->y>1){
 				s->z[h->x][h->y].obj=NEUTRE;
 				s->z[h->x][h->y].H=NULL;
 				s->z[h->x][h->y-1].obj=HERO;		
 				s->z[h->x][h->y-1].H=h;		
 				h->y=h->y-1;
+			return vrai;
 			}
 		}
 	else
-		if(h->x<s->taille-2){
-			if(entree==TOUCHE_FLECHE_DROITE){
-				if (s->z[h->x][h->y+1].obj==MONSTRE)
-					return s->z[h->x][h->y+1].mobs;
-				else 
-					return NULL;
-				
+		/*deplacement a droite*/
+		if(entree==TOUCHE_FLECHE_DROITE){
+			if(h->x<s->taille-2){
 				s->z[h->x][h->y].obj=NEUTRE;
 				s->z[h->x][h->y].H=NULL;
 				s->z[h->x+1][h->y].obj=HERO;		
 				s->z[h->x+1][h->y].H=h;		
 				h->x=h->x+1;
+			return vrai;
 			}
 		}
 	else 
-		if(h->x<2){
-			if(entree==TOUCHE_FLECHE_GAUCHE){
-				if (s->z[h->x][h->y+1].obj==MONSTRE)
-					return s->z[h->x][h->y+1].mobs;
-				else 
-					return NULL;
-				
+		/*deplacement a gauche*/
+		if(entree==TOUCHE_FLECHE_GAUCHE){
+			if(h->x>1){
 				s->z[h->x][h->y].obj=NEUTRE;
 				s->z[h->x][h->y].H=NULL;
 				s->z[h->x-1][h->y].obj=HERO;		
 				s->z[h->x-1][h->y].H=h;		
 				h->x=h->x-1;
+			return vrai;
 			}
 		}
-	else 
+
+	 /*Deplacement dans le cas des portes gauche et droite*/
 		if(entree==TOUCHE_FLECHE_GAUCHE){
-			if(h->x-1==0 && h->y==s->taille/2){
+			if(h->x==1 && h->y==(s->taille/2)){
 				s->z[h->x][h->y].obj=NEUTRE;
 				s->z[h->x][h->y].H=NULL;
 
 				s->z[h->x-1][h->y].obj=HERO;		
 				s->z[h->x-1][h->y].H=h;		
 				h->x=h->x-1;
+			return vrai;
 			}
 		}
 		else if(entree==TOUCHE_FLECHE_DROITE){
-			if(h->x+1==s->taille-1 && h->y==s->taille/2){
+			if(h->x==s->taille-2 && h->y==s->taille/2){
 				s->z[h->x][h->y].obj=NEUTRE;
 				s->z[h->x][h->y].H=NULL;
 
 				s->z[h->x+1][h->y].obj=HERO;		
 				s->z[h->x+1][h->y].H=h;		
 				h->x=h->x+1;
+			return vrai;
 			}
 		}
-	return NULL;			
+/*retourne faux s'il n'y a pas de mouvement reussie*/
+return faux;		
 }
 
+/*Si le hero rencontre un monstre en ce deplacant,on renvoie le monstre et on le supprime
+ * de la salle*/
+monstre CasseMonstre(salle s,hero h){
+	monstre ACombattre=NULL;
+	if(s->z[h->x][h->y].mobs!=NULL){
+		ACombattre=s->z[h->x][h->y].mobs;
+		s->z[h->x][h->y].mobs=NULL;
+		s->z[h->x][h->y].obj=NEUTRE;
+	}
+	return ACombattre;
+}
+
+/*Si le hero rencontre un coffre en ce deplacant,on le supprime
+ * de la salle et on ajoute son contenu au hero*/
+void OuvrirCoffre(salle s,hero h){
+	if(s->z[h->x][h->y].C!=NULL){
+		if((s->z[h->x][h->y]).C->ouvert==faux){
 		
+		s->z[h->x][h->y].C->ouvert=vrai;
+		}
+	}
+}
+/*Pour placer le hero dans la premiere salle,ou pour des evenement precis*/
+void insererHero(salle s,hero h){
+	s->z[h->x][h->y].H=h;
+	s->z[h->x][h->y].obj=HERO;
+	}
+

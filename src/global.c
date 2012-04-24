@@ -1,6 +1,11 @@
-#include"global.h"
+#include "global.h"
 
+/*Cache le curseur dans un coin en bas a droite de la console*/
+void PlanquerCurseur(){
+	SePositionner(70,70);
+	}
 
+/*Affiche le menu du jeu*/
 int menu(){
 	int entree=0;
 	int posMenu=5;
@@ -184,12 +189,14 @@ int menu(){
 	printf(" ");
 	
 	ReinitialiserCouleur();
+	PlanquerCurseur();		
 if(posMenu==5){
 		SePositionner(15,20);
 		printf("Continuer");
 		SePositionner(15,21);
 		printf("Quitter");
 		posMenu=0;
+		PlanquerCurseur();		
 		}
 
 	entree=RecupererAppuiTouche();
@@ -217,6 +224,7 @@ if(posMenu==5){
 
 		SePositionner(15,21);
 		printf("Quitter");
+		PlanquerCurseur();		
 	}
 	else 
 		if(posMenu==1){
@@ -228,10 +236,58 @@ if(posMenu==5){
 			SePositionner(15,21);
 			printf("Quitter");
 			ReinitialiserCouleur();
+			PlanquerCurseur();		
 			}
+	PlanquerCurseur();		
 	}	
 
 	EffacerEcran();
 return 0;
 	
 	}
+
+/*Creation du hero en debut de parti*/
+hero creerHero(){
+	hero h=(strHero*) malloc(sizeof(strHero));
+	h->nom=(char*) malloc(TAILLE_NOM_MAX*sizeof(char));
+	h->nom[14]='\0';
+	h->invHero=NULL;
+
+	SePositionner(20,10);
+	ChangerCouleurTexte(34);
+	printf("Quelle nom a le hero ? (14 caractere max)");
+	ReinitialiserCouleur();
+	SePositionner(20,11);
+	scanf("%s",h->nom);
+
+	h->x=3;
+	h->y=3;
+	h->HP=100;
+
+	return h;
+}
+/*affiche la vie du hero sous forme de barre rouge,une casse valant 10Pv */
+void AfficherVie(hero h){
+
+int i=0;
+
+	SePositionner(40,20);
+	ChangerCouleurTexte(32);
+	printf("Vie:");
+	ChangerCouleurFond(31);
+	
+	for(i=0;i<(h->HP/10);i++){
+		SePositionner(40+i,21);
+		printf(" ");
+	}
+	ReinitialiserCouleur();
+}
+
+/*Liberation de la structure hero*/
+void DetruireHero(hero h){
+	free(h->nom);
+	free(h);
+	} 
+	
+	
+	
