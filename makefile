@@ -30,6 +30,9 @@ global.o:global.c global.h  objet.h inventaire.h graphics.h
 inventaire.o:inventaire.c inventaire.h graphics.h
 	$(CC) -c  $< $(INC) -o $(BIN)$@ $(CFLAGS) 
 
+combat.o:combat.c combat.h graphics.h objet.h
+	$(CC) -c $< $(INC) -o $(BIN)$@ $(CFLAGS)
+
 clean:
 	rm $(BIN)*.o 
 	rm InfiniteRPG

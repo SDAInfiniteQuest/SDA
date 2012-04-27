@@ -17,11 +17,11 @@
 int menu();
 
 
-
 hero creerHero();
 void AfficherVie(hero h);
 void PlanquerCurseur();
 void DetruireHero(hero h);
+
 
 
 

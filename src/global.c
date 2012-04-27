@@ -246,12 +246,13 @@ return 0;
 	
 	}
 
-/*Creation du hero en debut de parti*/
+/*Creation du hero en debut de partie*/
+
 hero creerHero(){
 	hero h=(strHero*) malloc(sizeof(strHero));
 	h->nom=(char*) malloc(TAILLE_NOM_MAX*sizeof(char));
 	h->nom[14]='\0';
-	h->invHero=NULL;
+	h->invHero=creerInvHero(); //remplacement de NULL par un inventaire vide
 
 	SePositionner(20,10);
 	ChangerCouleurTexte(34);

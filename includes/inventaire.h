@@ -4,7 +4,7 @@
 #include<stdlib.h>
 
 #define TAILLE_INVENTAIRE 50
-#define NOMBRE_DE_CARTES 10
+#define NOMBRE_DE_CARTES 4
 
 enum typeItem { CARTE, POTION };
 
@@ -53,12 +53,24 @@ inventaire supprQte(inventaire, type, int);
 int existe(inventaire, type);
 int quantite(inventaire, type);
 int nombreRef(inventaire);
-/*
+
+inventaire creerInvHero();
+inventaire creerInvMobs();
+
 //objets de base de l'inventaire
-potion soin = { POTION, 1, "potion de soin", 30 };
-carte fantassin = { CARTE, 20, "fantassin", 2, 3, 2 };
-carte guerrier = { CARTE, 21, "guerrier", 6, 8, 6 };
-carte barbare = { CARTE, 22, "barbare", 10,7, 3 };
-carte tour = { CARTE, 23, "tour", 30, 4, 0 };
-*/
+
+type potSante = {.po={POTION, 1, "potion de soin", 30}} ;
+/*tabCarte[1] = { CARTE, 20, "fantassin", 4, 3, 2 };
+tabCarte[2] = { CARTE, 21, "guerrier", 6, 8, 4 };
+tabCarte[3] = { CARTE, 22, "barbare", 10, 7, 3 };
+tabCarte[4] = { CARTE, 23, "tour", 30, 5, 0 };*/
+
+/*type tabCarte[NOMBRE_DE_CARTES]={
+	{ CARTE, 20, "fantassin", 4, 5, 2 },
+	{ CARTE, 21, "guerrier", 6, 8, 4 },
+	{ CARTE, 22, "barbare", 10,7, 3 },
+	{ CARTE, 23, "tour", 30, 6, 0 }
+};*/
+
+
 #endif

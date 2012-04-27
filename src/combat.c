@@ -37,7 +37,7 @@ carte sommetPaquet(paquet P) {
 }
 
 Bool testVide(paquet P) {
-	return (P==NULL)?vrai:faux;
+	return (P==NULL)?1:0;
 }
 
 paquet rotationPaquet(paquet P) {
@@ -46,11 +46,31 @@ paquet rotationPaquet(paquet P) {
 
 
 paquet paquetGen(inventaire inv) {
-	int i,j;
+	int i,j; int k=0;
 	paquet P=paquetVide();
-	for(i=20;i<TAILLE_INVENTAIRE;i++) {
-		for(j=inv->it[i].qte;j>0;j++) P=ajouterCarte(P,inv->it[i].tp.card);
+	carte *C=(carte*) calloc(TAILLE_INVENTAIRE,sizeof(carte));
+	
+	//on insère les cartes dans un tableau
+	for(i=0;i<TAILLE_INVENTAIRE;i++) {
+		if ((inv->it[i].tp.ref!=0)&&(inv->it[i].tp.tpIt==CARTE)&&(inv->it[i].qte>0)) {
+			for(j=0;j<inv->it[i].qte;j++) {
+				if (k<TAILLE_INVENTAIRE) {
+					C[k]=inv->it[i].tp.card;
+					k++;
+				}
+			}
+		}
 	}
+
+	//on cree la liste de combat aléatoirment a partir du tableau
+	while(k>0) {
+		j=rand()%(k+1);
+		P=ajouterCarte(P,C[j]);
+		C[j]=C[k];
+		k--;
+	}
+	P=ajouterCarte(P,C[0]);
+
 	return P;
 }
 
@@ -87,4 +107,3 @@ int combat(monstre mobs, hero oreh) {
 
 	return 0;
 }
-
