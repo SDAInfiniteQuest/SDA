@@ -54,12 +54,12 @@ int existe(inventaire, type);
 int quantite(inventaire, type);
 int nombreRef(inventaire);
 
-inventaire creerInvHero();
-inventaire creerInvMobs();
+//inventaire creerInvHero();
+//inventaire creerInvMobs();
 
 //objets de base de l'inventaire
 
-type potSante = {.po={POTION, 1, "potion de soin", 30}} ;
+//type potSante = {.po={POTION, 1, "potion de soin", 30}} ;
 /*tabCarte[1] = { CARTE, 20, "fantassin", 4, 3, 2 };
 tabCarte[2] = { CARTE, 21, "guerrier", 6, 8, 4 };
 tabCarte[3] = { CARTE, 22, "barbare", 10, 7, 3 };

@@ -70,7 +70,7 @@ int nombreRef(inventaire inv) {
 	}
 	return ref;
 }
-
+/*
 inventaire creerInvHero() {
 	inventaire inv=stockVide();
 
@@ -102,3 +102,4 @@ inventaire creerInvMobs(){
 
 	return inv;
 }
+*/
