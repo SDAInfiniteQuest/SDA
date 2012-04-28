@@ -19,5 +19,6 @@ paquet rotationPaquet(paquet);
 
 paquet paquetGen(inventaire);
 int combat(monstre,hero);
+int bataille(monstre*,hero);
 
 #endif

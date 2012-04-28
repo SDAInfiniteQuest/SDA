@@ -3,18 +3,19 @@
 #include<time.h>
 #include"univers.h"
 #include"global.h"
-
-
+#include"combat.h"
 
 
 int main(){
 int entree=0;
 int valmenu=0;
+int resultatBataille;
 srand(time(NULL));
 univ test=initUniv();
 
 EffacerEcran();
 hero h=creerHero();
+monstre *m=creerBestiaire();
 ActiverModeRaw();
 insererHero(test->s,h);
 afficheSalle(test->s);
@@ -31,7 +32,9 @@ afficheSalle(test->s);
 			}
 			else if((deplacement(h,test->s,entree))==vrai){
 				test=changement_salle(h,test->s,test);
-				CasseMonstre(test->s,h);
+				if (CasseMonstre(test->s,h)!=NULL) {
+//					resultatBataille=bataille(m,h);
+				}
 				OuvrirCoffre(test->s,h);
 				afficheSalle(test->s);
 			}

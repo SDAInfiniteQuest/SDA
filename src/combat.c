@@ -62,7 +62,7 @@ paquet paquetGen(inventaire inv) {
 		}
 	}
 
-	//on cree la liste de combat aléatoirment a partir du tableau
+	//on cree la liste de combat aléatoirement a partir du tableau
 	while(k>0) {
 		j=rand()%(k+1);
 		P=ajouterCarte(P,C[j]);
@@ -70,6 +70,8 @@ paquet paquetGen(inventaire inv) {
 		k--;
 	}
 	P=ajouterCarte(P,C[0]);
+	
+	free(C);
 
 	return P;
 }
@@ -100,10 +102,21 @@ int combat(monstre mobs, hero oreh) {
 		}
 	}
 
-	if (pqtMobs==NULL) 
+	if (pqtMobs==NULL) {
 		mobs->HP--;
-	if (pqtHero==NULL) 
+		return 0;
+	}
+	else {
 		oreh->HP--;
+		return 1;
+	}
+}
 
-	return 0;
+int bataille(monstre *mobs, hero oreh) {
+	int r;
+	monstre m=mobs[rand()%10];
+	while ((m->HP>0)&&(oreh->HP>0)) {
+		r=combat(m,oreh);
+	}
+	return r;
 }

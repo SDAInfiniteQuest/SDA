@@ -252,7 +252,7 @@ hero creerHero(){
 	hero h=(strHero*) malloc(sizeof(strHero));
 	h->nom=(char*) malloc(TAILLE_NOM_MAX*sizeof(char));
 	h->nom[14]='\0';
-	h->invHero=NULL;//creerInvHero(); //remplacement de NULL par un inventaire vide
+	h->invHero=creerInvHero(); //remplacement de NULL par un inventaire 
 
 	SePositionner(20,10);
 	ChangerCouleurTexte(34);
@@ -263,10 +263,32 @@ hero creerHero(){
 
 	h->x=3;
 	h->y=3;
-	h->HP=100;
+	h->HP=10;
 
 	return h;
 }
+
+/*Creation du bestiaire en début de partie*/
+
+monstre *creerBestiaire() {
+	int i;
+	monstre *m=(strMonstre**) malloc(TAILLE_BESTIAIRE*sizeof(strMonstre*));
+	for(i=0;i<TAILLE_BESTIAIRE;i++) {
+		m[i]=(strMonstre*) malloc(sizeof(strMonstre));
+		m[i]->HP=rand()%5+5;
+		m[i]->invMobs=creerInvMobs();
+	}
+	return m;
+}
+
+void detruireBestiaire(monstre *m) {
+	int i;
+	for(i=0;i<TAILLE_BESTIAIRE;i++) {
+		free(m[i]);
+	}
+	free(m);
+}
+
 /*affiche la vie du hero sous forme de barre rouge,une casse valant 10Pv */
 void AfficherVie(hero h){
 
@@ -277,7 +299,7 @@ int i=0;
 	printf("Vie:");
 	ChangerCouleurFond(31);
 	
-	for(i=0;i<(h->HP/10);i++){
+	for(i=0;i<(h->HP);i++){
 		SePositionner(40+i,21);
 		printf(" ");
 	}

@@ -1,5 +1,5 @@
 #ifndef _inventaire_h_
-#define inventaire_h_
+#define _inventaire_h_
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -54,19 +54,21 @@ int existe(inventaire, type);
 int quantite(inventaire, type);
 int nombreRef(inventaire);
 
-//inventaire creerInvHero();
-//inventaire creerInvMobs();
+inventaire creerInvHero();
+inventaire creerInvMobs();
+inventaire creerInvCoffre();
 
 //objets de base de l'inventaire
-
-//type potSante = {.po={POTION, 1, "potion de soin", 30}} ;
-/*tabCarte[1] = { CARTE, 20, "fantassin", 4, 3, 2 };
-tabCarte[2] = { CARTE, 21, "guerrier", 6, 8, 4 };
-tabCarte[3] = { CARTE, 22, "barbare", 10, 7, 3 };
-tabCarte[4] = { CARTE, 23, "tour", 30, 5, 0 };*/
-
+/*
+extern type potSante = {.po={POTION, 1, "potion de soin", 5}} ;
+extern type fantassin = {.card={CARTE, 20, "fantassin", 4, 3, 2}};
+extern type guerrier = {.card={CARTE, 21, "guerrier", 6, 8, 4}};
+extern type barbare = {.card={CARTE, 22, "barbare", 10, 7, 3}};
+extern type tour = {.card={CARTE, 23, "tour", 30, 5, 0}};
+extern type sorcier = {.card={CARTE, 24, "sorcier", 15, 4, 1}};
+*/
 /*type tabCarte[NOMBRE_DE_CARTES]={
-	{ CARTE, 20, "fantassin", 4, 5, 2 },
+	{.po={POTION, 1, "potion de soin", 5}},
 	{ CARTE, 21, "guerrier", 6, 8, 4 },
 	{ CARTE, 22, "barbare", 10,7, 3 },
 	{ CARTE, 23, "tour", 30, 6, 0 }

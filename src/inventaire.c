@@ -3,6 +3,14 @@
 #include <string.h>
 #include"inventaire.h"
 
+//type potSante = {.po={POTION, 1, "potion de soin", 5}} ;
+type fantassin = {.card={CARTE, 20, "fantassin", 4, 3, 2}};
+type guerrier = {.card={CARTE, 21, "guerrier", 6, 8, 4}};
+type barbare = {.card={CARTE, 22, "barbare", 10, 7, 3}};
+type tour = {.card={CARTE, 23, "tour", 30, 5, 0}};
+type sorcier = {.card={CARTE, 24, "sorcier", 15, 4, 1}};
+
+
 inventaire stockVide() {
 	inventaire inv=(inventaire) calloc(1,sizeof(str_inventaire));
 	inv->place=TAILLE_INVENTAIRE;
@@ -70,36 +78,73 @@ int nombreRef(inventaire inv) {
 	}
 	return ref;
 }
-/*
+
 inventaire creerInvHero() {
 	inventaire inv=stockVide();
 
-	ajoutRef(inv, potSante);
-	ajoutQte(inv, potSante, 7);
+//	ajoutRef(inv, potSante);
+//	ajoutQte(inv, potSante, 3);
 	
-	ajoutRef(inv, tabCarte[0]);
-	ajoutRef(inv, tabCarte[1]);	
-	ajoutRef(inv, tabCarte[2]);
-	ajoutRef(inv, tabCarte[3]);
+	ajoutRef(inv, fantassin);
+	ajoutQte(inv, fantassin, 4);
 	
-	ajoutQte(inv, tabCarte[0], 7);
-	ajoutQte(inv, tabCarte[1], 4);
-	ajoutQte(inv, tabCarte[2], 4);
-	ajoutQte(inv, tabCarte[3], 2);
+/*	ajoutRef(inv, guerrier);
+	ajoutQte(inv, guerrier, 3);
 	
+	ajoutRef(inv, barbare);
+	ajoutQte(inv, barbare, 3);
+	
+	ajoutRef(inv, tour);	
+	ajoutQte(inv, tour, 2);
+
+	ajoutRef(inv, sorcier);
+	ajoutQte(inv, sorcier, 2);
+*/	
 	return inv;
 }
 
 inventaire creerInvMobs(){
 	inventaire inv=stockVide();
-	int i,qte;
 	
-	for(i=0;i<NOMBRE_DE_CARTES;i++) {
-		qte=rand()%6;
-		ajoutRef(inv, tabCarte[i]);
-		ajoutQte(inv, tabCarte[i], qte);
-	}
+	ajoutRef(inv, fantassin);
+	ajoutQte(inv, fantassin, rand()%9+1);
+	
+	ajoutRef(inv, guerrier);
+	ajoutQte(inv, guerrier, rand()%4+1);
+	
+	ajoutRef(inv, barbare);
+	ajoutQte(inv, barbare, rand()%4+1);
+	
+	ajoutRef(inv, tour);	
+	ajoutQte(inv, tour, rand()%3);
 
+	ajoutRef(inv, sorcier);
+	ajoutQte(inv, sorcier, rand()%3);
+	
 	return inv;
 }
-*/
+
+inventaire creerInvCoffre(){
+	inventaire inv=stockVide();
+
+//	ajoutRef(inv, potSante);
+//	ajoutQte(inv, potSante, rand()%2);
+	
+	ajoutRef(inv, fantassin);
+	ajoutQte(inv, fantassin, rand()%2);
+	
+	ajoutRef(inv, guerrier);
+	ajoutQte(inv, guerrier, rand()%2);
+	
+	ajoutRef(inv, barbare);
+	ajoutQte(inv, barbare, rand()%2);
+	
+	ajoutRef(inv, tour);	
+	ajoutQte(inv, tour, rand()%2);
+
+	ajoutRef(inv, sorcier);
+	ajoutQte(inv, sorcier, rand()%2);
+	
+	return inv;
+}
+
