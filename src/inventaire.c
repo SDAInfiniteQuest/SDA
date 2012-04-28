@@ -3,7 +3,7 @@
 #include <string.h>
 #include"inventaire.h"
 
-//type potSante = {.po={POTION, 1, "potion de soin", 5}} ;
+type potSante = {.card={POTION, 1, "potion de soin", 5, 0, 0}} ;
 type fantassin = {.card={CARTE, 20, "fantassin", 4, 3, 2}};
 type guerrier = {.card={CARTE, 21, "guerrier", 6, 8, 4}};
 type barbare = {.card={CARTE, 22, "barbare", 10, 7, 3}};
@@ -19,8 +19,8 @@ inventaire stockVide() {
 
 inventaire ajoutRef(inventaire inv, type t) {
 	if (existe(inv,t)!=1) {
-		if (t.tpIt==CARTE) inv->it[t.ref].tp=t;
-		if (t.tpIt==POTION) inv->it[t.ref].tp=t;
+		if (t.card.tpIt==CARTE) inv->it[t.ref].tp.card=t.card;
+		if (t.po.tpIt==POTION) inv->it[t.ref].tp.po=t.po;
 	}
 	return inv;
 }
@@ -63,7 +63,7 @@ inventaire supprQte(inventaire inv, type t, int qte) {
 }
 
 int existe(inventaire inv, type t) {
-	if (inv->it[t.ref].tp.ref==t.ref) return 1;
+	if (inv->it[t.ref].tp.card.ref==t.ref) return 1;
 	else return 0;
 }
 
@@ -82,13 +82,13 @@ int nombreRef(inventaire inv) {
 inventaire creerInvHero() {
 	inventaire inv=stockVide();
 
-//	ajoutRef(inv, potSante);
-//	ajoutQte(inv, potSante, 3);
+	ajoutRef(inv, potSante);
+	ajoutQte(inv, potSante, 3);
 	
 	ajoutRef(inv, fantassin);
 	ajoutQte(inv, fantassin, 4);
 	
-/*	ajoutRef(inv, guerrier);
+	ajoutRef(inv, guerrier);
 	ajoutQte(inv, guerrier, 3);
 	
 	ajoutRef(inv, barbare);
@@ -99,7 +99,7 @@ inventaire creerInvHero() {
 
 	ajoutRef(inv, sorcier);
 	ajoutQte(inv, sorcier, 2);
-*/	
+	
 	return inv;
 }
 
@@ -127,8 +127,8 @@ inventaire creerInvMobs(){
 inventaire creerInvCoffre(){
 	inventaire inv=stockVide();
 
-//	ajoutRef(inv, potSante);
-//	ajoutQte(inv, potSante, rand()%2);
+	ajoutRef(inv, potSante);
+	ajoutQte(inv, potSante, rand()%2);
 	
 	ajoutRef(inv, fantassin);
 	ajoutQte(inv, fantassin, rand()%2);

@@ -15,7 +15,7 @@ univ test=initUniv();
 
 EffacerEcran();
 hero h=creerHero();
-monstre *m=creerBestiaire();
+monstre m;
 ActiverModeRaw();
 insererHero(test->s,h);
 afficheSalle(test->s);
@@ -32,7 +32,7 @@ afficheSalle(test->s);
 			}
 			else if((deplacement(h,test->s,entree))==vrai){
 				test=changement_salle(h,test->s,test);
-				if (CasseMonstre(test->s,h)!=NULL) {
+				if ((m=CaseMonstre(test->s,h))!=NULL) {
 					resultatBataille=bataille(m,h);
 				}
 				OuvrirCoffre(test->s,h);

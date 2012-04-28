@@ -42,11 +42,11 @@ typedef struct salle {
 
 int randIntervalle(int a,int b);
 salle creerSalle();
-salle remplirSalle(salle s/* monstre* tableau_des_monstre*/);                          
+salle remplirSalle(salle s);                          
 void detruireSalle(salle s);
 void afficheSalle(salle s);
 void insererHero(salle s,hero h);
 Bool deplacement(hero h,salle s,int entree);
 void OuvrirCoffre(salle s,hero h);
-monstre CasseMonstre(salle s, hero h);
+monstre CaseMonstre(salle s, hero h);
 #endif

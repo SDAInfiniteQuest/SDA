@@ -28,7 +28,6 @@ typedef struct {
 
 //type item
 typedef union {
-	enum typeItem tpIt;
 	int ref;
 	carte card;
 	potion po;

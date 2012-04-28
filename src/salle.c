@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "salle.h"
+#include "global.h"
 
 int numeroSalle=0; /*variable global pour incrementer facilement le numero de la nouvelle salle
                     creer, sujet a changement */
@@ -42,7 +43,7 @@ salle creerSalle() { // alloue en memoire une salle et initialise toute les zone
 
 
 
-salle remplirSalle(salle s/* monstre* tableau_des_monstre*/){                          // Big-ass fonction qui remplis la salle avec des mobs,des coffres ;
+salle remplirSalle(salle s){                          // Big-ass fonction qui remplis la salle avec des mobs,des coffres ;
 	int monstre=randIntervalle(MIN_MONSTRE,MAX_MONSTRE);
 	int coffre=randIntervalle(MIN_COFFRE,MAX_COFFRE);
 	int i=0,v=0;
@@ -73,7 +74,7 @@ salle remplirSalle(salle s/* monstre* tableau_des_monstre*/){                   
 		tmpRandH = randIntervalle(1,s->taille-1);
 
 		s->z[tmpRandL][tmpRandH].obj=1;  // La case est occuper par un monstre
-		//(s->z[tmpRandL][tmpRandH])->u.mobs=tableau_des_monstre[randIntervalle(0,NBR_MONSTRE_JEU)];
+		s->z[tmpRandL][tmpRandH].mobs=creerMonstre();
 	}
 
 /*placement et choix des coffres*/
@@ -220,7 +221,7 @@ return faux;
 
 /*Si le hero rencontre un monstre en ce deplacant,on renvoie le monstre et on le supprime
  * de la salle*/
-monstre CasseMonstre(salle s,hero h){
+monstre CaseMonstre(salle s,hero h){
 	monstre ACombattre=NULL;
 	if(s->z[h->x][h->y].mobs!=NULL){
 		ACombattre=s->z[h->x][h->y].mobs;

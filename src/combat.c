@@ -52,7 +52,7 @@ paquet paquetGen(inventaire inv) {
 	
 	//on insère les cartes dans un tableau
 	for(i=0;i<TAILLE_INVENTAIRE;i++) {
-		if ((inv->it[i].tp.ref!=0)&&(inv->it[i].tp.tpIt==CARTE)&&(inv->it[i].qte>0)) {
+		if ((inv->it[i].tp.ref!=0)&&(inv->it[i].tp.card.tpIt==CARTE)&&(inv->it[i].qte>0)) {
 			for(j=0;j<inv->it[i].qte;j++) {
 				if (k<TAILLE_INVENTAIRE) {
 					C[k]=inv->it[i].tp.card;
@@ -69,7 +69,7 @@ paquet paquetGen(inventaire inv) {
 		C[j]=C[k];
 		k--;
 	}
-	P=ajouterCarte(P,C[0]);
+	//P=ajouterCarte(P,C[0]);
 	
 	free(C);
 
@@ -112,11 +112,10 @@ int combat(monstre mobs, hero oreh) {
 	}
 }
 
-int bataille(monstre *mobs, hero oreh) {
+int bataille(monstre mobs, hero oreh) {
 	int r;
-	monstre m=mobs[rand()%10];
-	while ((m->HP>0)&&(oreh->HP>0)) {
-		r=combat(m,oreh);
+	while ((mobs->HP>0)&&(oreh->HP>0)) {
+		r=combat(mobs,oreh);
 	}
 	return r;
 }

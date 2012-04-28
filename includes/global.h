@@ -9,8 +9,7 @@
 #define faux 0
 #define NBR_MENU 1
 #define TAILLE_NOM_MAX 15
-#define TAILLE_BESTIAIRE 10
-
+//#define TAILLE_BESTIAIRE 10
 
 
 
@@ -18,8 +17,8 @@ int menu();
 
 
 hero creerHero();
-monstre *creerBestiaire();
-void detruireBestiaire(monstre*);
+monstre creerMonstre();
+void detruireiMonstre(monstre);
 void AfficherVie(hero h);
 void PlanquerCurseur();
 void DetruireHero(hero h);
