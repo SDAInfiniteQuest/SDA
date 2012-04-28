@@ -33,7 +33,7 @@ afficheSalle(test->s);
 			else if((deplacement(h,test->s,entree))==vrai){
 				test=changement_salle(h,test->s,test);
 				if (CasseMonstre(test->s,h)!=NULL) {
-//					resultatBataille=bataille(m,h);
+					resultatBataille=bataille(m,h);
 				}
 				OuvrirCoffre(test->s,h);
 				afficheSalle(test->s);
