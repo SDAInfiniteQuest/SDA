@@ -10,8 +10,8 @@ enum typeItem { CARTE, POTION };
 
 //type carte
 typedef struct { 
-	enum typeItem tpIt;
 	int ref;
+	enum typeItem tpIt;
 	char nom[20];
 	int HP;
 	int attaque;
@@ -20,8 +20,8 @@ typedef struct {
 
 //type potion
 typedef struct {
-	enum typeItem tpIt;
 	int ref;
+	enum typeItem tpIt;
 	char nom[20];
 	int HP;
 } potion;

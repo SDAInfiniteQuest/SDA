@@ -3,12 +3,12 @@
 #include <string.h>
 #include"inventaire.h"
 
-type potSante = {.card={POTION, 1, "potion de soin", 5, 0, 0}} ;
-type fantassin = {.card={CARTE, 20, "fantassin", 4, 3, 2}};
-type guerrier = {.card={CARTE, 21, "guerrier", 6, 8, 4}};
-type barbare = {.card={CARTE, 22, "barbare", 10, 7, 3}};
-type tour = {.card={CARTE, 23, "tour", 30, 5, 0}};
-type sorcier = {.card={CARTE, 24, "sorcier", 15, 4, 1}};
+type potSante = {.card={ 1, POTION, "potion de soin", 5, 0, 0}} ;
+type fantassin = {.card={ 20, CARTE, "fantassin", 4, 3, 2}};
+type guerrier = {.card={ 21, CARTE, "guerrier", 6, 8, 4}};
+type barbare = {.card={ 22, CARTE, "barbare", 10, 7, 3}};
+type tour = {.card={ 23, CARTE, "tour", 30, 5, 0}};
+type sorcier = {.card={ 24, CARTE, "sorcier", 15, 4, 1}};
 
 
 inventaire stockVide() {
@@ -18,9 +18,16 @@ inventaire stockVide() {
 }
 
 inventaire ajoutRef(inventaire inv, type t) {
+	int i;
 	if (existe(inv,t)!=1) {
-		if (t.card.tpIt==CARTE) inv->it[t.ref].tp.card=t.card;
-		if (t.po.tpIt==POTION) inv->it[t.ref].tp.po=t.po;
+		inv->it[t.ref].tp.ref=t.ref;
+		inv->it[t.ref].tp.po.tpIt=t.po.tpIt;
+		inv->it[t.ref].tp.po.HP=t.po.HP;
+		inv->it[t.ref].tp.card.attaque=t.card.attaque;
+		inv->it[t.ref].tp.card.defense=t.card.defense;
+		for(i=0;i<20;i++) {
+			inv->it[t.ref].tp.po.nom[i]=t.po.nom[i];
+		}
 	}
 	return inv;
 }
@@ -63,7 +70,7 @@ inventaire supprQte(inventaire inv, type t, int qte) {
 }
 
 int existe(inventaire inv, type t) {
-	if (inv->it[t.ref].tp.card.ref==t.ref) return 1;
+	if (inv->it[t.ref].tp.ref==t.ref) return 1;
 	else return 0;
 }
 
