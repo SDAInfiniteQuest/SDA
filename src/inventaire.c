@@ -116,16 +116,16 @@ inventaire creerInvMobs(){
 	ajoutQte(inv, fantassin, rand()%9+1);
 	
 	ajoutRef(inv, guerrier);
-	ajoutQte(inv, guerrier, rand()%4+1);
+	ajoutQte(inv, guerrier, rand()%3+1);
 	
 	ajoutRef(inv, barbare);
-	ajoutQte(inv, barbare, rand()%4+1);
+	ajoutQte(inv, barbare, rand()%3+1);
 	
 	ajoutRef(inv, tour);	
-	ajoutQte(inv, tour, rand()%3);
+	ajoutQte(inv, tour, rand()%4+1);
 
 	ajoutRef(inv, sorcier);
-	ajoutQte(inv, sorcier, rand()%3);
+	ajoutQte(inv, sorcier, rand()%3+1);
 	
 	return inv;
 }

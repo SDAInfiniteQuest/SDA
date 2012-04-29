@@ -25,9 +25,16 @@ paquet ajouterCarte(paquet P,carte C) {
 paquet supprimerCarte(paquet P) {
 	paquet tmp;
 	if (P!=NULL) {
-		tmp=P->suiv;
-		P->suiv=P->suiv->suiv;
-		free(tmp);
+		if (P!=P->suiv) {
+			tmp=P->suiv;
+			P->suiv=P->suiv->suiv;
+			free(tmp);
+		}
+		else {
+			tmp=P;
+			free(tmp);
+			P=paquetVide();
+		}
 	}
 	return P;
 }

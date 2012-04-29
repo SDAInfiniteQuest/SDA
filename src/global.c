@@ -263,7 +263,7 @@ hero creerHero(){
 
 	h->x=3;
 	h->y=3;
-	h->HP=10;
+	h->HP=30;
 
 	return h;
 }

@@ -7,42 +7,42 @@
 
 
 int main(){
-int entree=0;
-int valmenu=0;
-int resultatBataille;
-srand(time(NULL));
-univ test=initUniv();
+	int entree=0;
+	int valmenu=0;
+	int mortHero;
+	srand(time(NULL));
+	univ test=initUniv();
 
-EffacerEcran();
-hero h=creerHero();
-monstre m;
-ActiverModeRaw();
-insererHero(test->s,h);
-afficheSalle(test->s);
+	EffacerEcran();
+	hero h=creerHero();
+	monstre m;
+	ActiverModeRaw();
+	insererHero(test->s,h);
+	afficheSalle(test->s);
 	while(valmenu!=1){
 		AfficherVie(h);
 		TitreSalle(test);
 		PlanquerCurseur();
 		entree=RecupererAppuiTouche();
 		if (entree==TOUCHE_M_MIN){
-				EffacerEcran();
-				valmenu=menu();
-				EffacerEcran();
-				afficheSalle(test->s);
+			EffacerEcran();
+			valmenu=menu();
+			EffacerEcran();
+			afficheSalle(test->s);
+		}
+		else if((deplacement(h,test->s,entree))==vrai){
+			test=changement_salle(h,test->s,test);
+			if ((m=CaseMonstre(test->s,h))!=NULL) {
+				mortHero=bataille(m,h);
 			}
-			else if((deplacement(h,test->s,entree))==vrai){
-				test=changement_salle(h,test->s,test);
-				if ((m=CaseMonstre(test->s,h))!=NULL) {
-					resultatBataille=bataille(m,h);
-				}
-				OuvrirCoffre(test->s,h);
-				afficheSalle(test->s);
-			}
+			OuvrirCoffre(test->s,h);
+			afficheSalle(test->s);
+		}
 	}
-EffacerEcran();
-DesactiverModeRaw();
-DetruireUnivers(test);
-DetruireHero(h);
-return 0;	
+	EffacerEcran();
+	DesactiverModeRaw();
+	DetruireUnivers(test);
+	DetruireHero(h);
+	return 0;	
 }
 
