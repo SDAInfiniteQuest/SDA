@@ -7,17 +7,17 @@ paquet paquetVide() {
 }
 
 paquet ajouterCarte(paquet P,carte C) {
-	paquet P2,tmp;
+	paquet P2,tete;
 	P2 = (paquet) malloc(sizeof(strPaquet));
+	P2->card=C;
 	if (P==NULL) {
-		P2->card=C;
 		P2->suiv=P2;
 		free(P);
 	}
 	else {
-		tmp=P->suiv;
+		tete=P->suiv;
 		P->suiv=P2;
-		P2->suiv=tmp;
+		P2->suiv=tete;
 	}
 	return P2;
 }
@@ -61,13 +61,18 @@ paquet paquetGen(inventaire inv) {
 			}
 		}
 	}
-
+	
 	//on cree la liste de combat aléatoirement a partir du tableau
 	while(k>0) {
-		j=rand()%(k+1);
+		k--;
+		if (k>1) {
+			j=rand()%k;
+		}
+		else {
+			j=k;
+		}
 		P=ajouterCarte(P,C[j]);
 		C[j]=C[k];
-		k--;
 	}
 	//P=ajouterCarte(P,C[0]);
 	
@@ -85,20 +90,20 @@ int combat(monstre mobs, hero oreh) {
 		cardHero=sommetPaquet(pqtHero);
 		cardMobs=sommetPaquet(pqtMobs);
 		if (cardMobs.attaque>cardHero.defense) {
-			cardHero.HP=cardHero.HP-(cardMobs.attaque-cardHero.defense);
+			pqtHero->suiv->card.HP-=(cardMobs.attaque-cardHero.defense);
 		}
 		if (cardMobs.defense<cardHero.attaque) {
-			cardMobs.HP=cardMobs.HP-(cardHero.attaque-cardMobs.defense);
+			pqtMobs->suiv->card.HP-=(cardHero.attaque-cardMobs.defense);
 		}
-		if (cardHero.HP<=0) {
-			supprimerCarte(pqtHero);
-			if (cardMobs.HP<=0) supprimerCarte(pqtMobs);
-			else rotationPaquet(pqtMobs);
+		if (pqtHero->suiv->card.HP<=0) {
+			pqtHero=supprimerCarte(pqtHero);
+			if (pqtMobs->suiv->card.HP<=0) pqtMobs=supprimerCarte(pqtMobs);
+			else pqtMobs=rotationPaquet(pqtMobs);
 		}
 		else {
-			rotationPaquet(pqtHero);
-			if (cardMobs.HP<=0) supprimerCarte(pqtMobs);
-			else rotationPaquet(pqtMobs);
+			pqtHero=rotationPaquet(pqtHero);
+			if (pqtMobs->suiv->card.HP<=0) pqtMobs=supprimerCarte(pqtMobs);
+			else pqtMobs=rotationPaquet(pqtMobs);
 		}
 	}
 

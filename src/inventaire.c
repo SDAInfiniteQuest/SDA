@@ -10,7 +10,6 @@ type barbare = {.card={ 22, CARTE, "barbare", 10, 7, 3}};
 type tour = {.card={ 23, CARTE, "tour", 30, 5, 0}};
 type sorcier = {.card={ 24, CARTE, "sorcier", 15, 4, 1}};
 
-
 inventaire stockVide() {
 	inventaire inv=(inventaire) calloc(1,sizeof(str_inventaire));
 	inv->place=TAILLE_INVENTAIRE;
@@ -43,10 +42,10 @@ inventaire supprRef(inventaire inv, type t) {
 inventaire ajoutQte(inventaire inv, type t, int qte) {
 	int dispo=9-inv->it[t.ref].qte;
 	int rempli;
-	if (qte>dispo) rempli=dispo;
-	else rempli=qte;
-	if (inv->place+rempli>TAILLE_INVENTAIRE) {
-		rempli=TAILLE_INVENTAIRE-inv->place;
+	if (qte<dispo) rempli=qte;
+	else rempli=dispo;
+	if (inv->place-rempli<0) {
+		rempli=inv->place;
 	}
 	
 	inv->it[t.ref].qte+=rempli;	
