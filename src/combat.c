@@ -47,6 +47,18 @@ Bool testVide(paquet P) {
 	return (P==NULL)?1:0;
 }
 
+int longueur(paquet p) {
+	int i=0; paquet tmp=p->suiv;
+	if (p!=NULL) {
+		i=1;
+		while (tmp!=p) {
+			tmp=tmp->suiv;
+			i++;
+		}
+	}
+	return i;
+}
+
 paquet rotationPaquet(paquet P) {
 	return P->suiv;
 }

@@ -1,0 +1,73 @@
+Descritpions:
+
+a./combat:
+On crée, pour le système de combat, deux listes chainées circulaires qui sont les deux paquets des monstres et du hero. Puis on compare tour a tour les cartes jusqu'à ce que l'un des deux paquets soit vide.
+On réitère l'opération jusqu'à ce que l'un des deux protagonistes meurt.
+
+b./inventaire:
+Chaque personnage, monstre ou hero est dote d'un inventaire sous forme de tableau d'une capacité de 50 items contenant carte et potion.
+Dans la structure des personnages se trouve un pointeur vers son inventaire. 
+ /|\
+/_!_\: l'essentiel de la strcture ne sontient pas de pointeur pour que l'on puisse passer séparément les éléments (carte, potion) par copie lors du combat par exemple.
+
+Specifications:
+
+a./combat(liste chainee circulaire)
+
+operations:
+	paquetVide: _->paquet
+	ajouterCarte: paquet, carte->paquet
+	supprimerCarte: paquet->paquet
+	sommetPaquet: paquet->carte
+	testVide: paquet->Bool
+	rotationPaquet: paquet->paquet
+	longueur: paquet->int
+
+pre-conditions: paquet P, carte C
+	pre(supprimer(P))=(testVide(P)==faux)
+	pre(sommetPaquet(P))=(testVide(P)==faux)
+	
+axiomes:
+	testVide(paquetVide())=vrai
+	testVide(ajouterCarte(P,C))=faux
+	supprimerCarte(ajouter(P,C))=P
+	sommetPaquet(ajouterCarte(P,C))=sommetPaquet(P) si (testVide(P)!=0)
+																	C sinon
+	rotationPaquet(paquetVide())=paquetVide()
+	
+	
+b./inventaire(stock)
+
+operations:
+	stockVide: _->inventaire //initie un pointeur sur NULL
+ 	ajoutRef: inventaire, type->inventaire
+	supprRef: inventaire, type->inventaire
+	ajoutQte: inventaire, type, int->inventaire
+	supprQte: inventaire, type, int->inventaire
+	existe: inventaire, type->bool
+	estVide: inventaire->bool
+	quantite: inventaire, type->int
+	nombreRef: inventaire->int
+	transfert: inventaire, inventaire->inventaire
+	
+pre-conditions: inventaire inv, type t, int i
+	pre(ajoutQte(inv,t,i))=existe(inv,t)==true
+	pre(supprQte(inv,t,i))=quantite(inv,t)>0
+	pre(transfert(inv1,inv2))=existe(inv2)==true
+	
+axiomes:
+	supprRef(ajoutRef(inv,t1),t2)=inv si t1==t2
+																ajoutRef(supprRef(inv,t2),t1)
+	ajoutQte(ajoutRef(inv,t1),t2,i)=ajoutQte(ajoutRef(inv,t2),t1,i)
+	supprQte(ajoutRef(inv,t1),t2,i)=supprQte(ajoutRef(inv,t1),t2,i)
+	existe(ajoutRef(inv,t1),t2)=vrai si t1==t2
+															existe(inv,t2) sinon
+	estVide(ajoutRef(inv,t))=estVide(inv)
+	quantite(ajoutRef(inv,t1),t2)=0 si t1=t2
+																quantite(in,t2) sinon
+	nombreRef(ajoutRef(inv,t1))=nombreRef(inv)+1
+	
+	
+	
+	
+

@@ -49,13 +49,13 @@ inventaire ajoutRef(inventaire, type);
 inventaire supprRef(inventaire, type);
 inventaire ajoutQte(inventaire, type, int);
 inventaire supprQte(inventaire, type, int);
-inventaire transfert(inventaire, inventaire);
+int estVide(inventaire);
 int existe(inventaire, type);
 int quantite(inventaire, type);
 int nombreRef(inventaire);
 
-inventaire transfert(inventaire, inventaire);
 
+inventaire transfert(inventaire, inventaire);
 inventaire creerInvHero();
 inventaire creerInvMobs();
 inventaire creerInvCoffre();

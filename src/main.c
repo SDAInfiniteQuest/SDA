@@ -16,7 +16,6 @@ int main(){
 	EffacerEcran();
 	hero h=creerHero();
 	monstre m;
-	coffre c=NULL;
 	ActiverModeRaw();
 	insererHero(test->s,h);
 	afficheSalle(test->s);

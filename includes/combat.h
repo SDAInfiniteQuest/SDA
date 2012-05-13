@@ -15,6 +15,7 @@ paquet ajouterCarte(paquet,carte);
 paquet supprimerCarte(paquet);
 carte sommetPaquet(paquet);
 Bool testVide(paquet);
+int longueur(paquet);
 paquet rotationPaquet(paquet);
 
 paquet paquetGen(inventaire);

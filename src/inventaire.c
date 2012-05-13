@@ -73,6 +73,11 @@ int existe(inventaire inv, type t) {
 	else return 0;
 }
 
+int estVide(inventaire inv) {
+	if (inv->place==TAILLE_INVENTAIRE) return 1;
+	else return 0;
+}
+
 int quantite(inventaire inv, type t) {
 	return inv->it[t.ref].qte;
 }
