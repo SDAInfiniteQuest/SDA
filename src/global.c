@@ -263,25 +263,44 @@ hero creerHero(){
 
 	h->x=3;
 	h->y=3;
+	h->pieces=10;
 	h->HP=30;
 
 	return h;
 }
 
-/*Creation d'un bestiaire*/
+/*Creation et destruction d'un monstre*/
 
 monstre creerMonstre() {
 	monstre m=(strMonstre*) malloc(sizeof(strMonstre));
 	m->HP=rand()%5+5;
+	m->pieces=rand()%5+1;
 	m->invMobs=creerInvMobs();
 	return m;
 }
 
 void detruireMonstre(monstre m) {
+	free(m->nom);
+	free(m->invMobs);
 	free(m);
 }
 
-/*affiche la vie du hero sous forme de barre rouge,une case valant 10Pv */
+/*Creation et destruction d'un coffre*/
+
+coffre creerCoffre() {
+	coffre c=(coffre) calloc(1,sizeof(str_coffre));
+	c->t=rand()%2;
+	if (c->t==OR) c->pieces=rand()%10+1;
+	if (c->t==BONUS) c->inv=creerInvCoffre();
+	return c;
+}
+
+void detruireCoffre(coffre c) {
+	free(c->inv);
+	free(c);
+}
+
+/*affiche la vie du hero sous forme de barre rouge,une case valant 1Pv */
 void AfficherVie(hero h){
 
 	int i=0;
@@ -297,10 +316,17 @@ void AfficherVie(hero h){
 	}
 	ReinitialiserCouleur();
 }
+/*affiche l'or du hero*/
+void afficherOr(hero h) {
+	SePositionner(40,23);
+	ChangerCouleurTexte(32);
+	printf("Or: %d",h->pieces);
+}
 
 /*Liberation de la structure hero*/
 void DetruireHero(hero h){
 	free(h->nom);
+	free(h->invHero);
 	free(h);
 } 
 

@@ -73,7 +73,7 @@ salle remplirSalle(salle s){                          // Big-ass fonction qui re
 		tmpRandL = randIntervalle(1,s->taille-1);
 		tmpRandH = randIntervalle(1,s->taille-1);
 
-		s->z[tmpRandL][tmpRandH].obj=1;  // La case est occuper par un monstre
+		s->z[tmpRandL][tmpRandH].obj=1;  // La case est occupee par un monstre
 		s->z[tmpRandL][tmpRandH].mobs=creerMonstre();
 	}
 
@@ -83,8 +83,8 @@ salle remplirSalle(salle s){                          // Big-ass fonction qui re
 		tmpRandH = randIntervalle(1,s->taille-1);
 		
 		if(s->z[tmpRandL][tmpRandH].obj!=2 ){
-		s->z[tmpRandL][tmpRandH].obj=2;  // La case est occuper par un coffre
-		//(s->z[tmpRandL][tmpRandH])->u.C=RandomCoffre();
+		s->z[tmpRandL][tmpRandH].obj=2;  // La case est occupee par un coffre
+		s->z[tmpRandL][tmpRandH].C=creerCoffre();
 		}
 	coffre--;	
 	}
@@ -133,9 +133,13 @@ EffacerEcran();
 }
 /*Free d'une salle et de sa matrice associe*/
 void detruireSalle(salle s){
-	int i,v;
+	int i,j;
 
 	for (i=0;i<s->taille;i++){
+		for(j=0;j<s->taille;j++) {
+			if (s->z[i][j].obj==MONSTRE) detruireMonstre(s->z[i][j].mobs);
+			if (s->z[i][j].obj==COFFRE) detruireCoffre(s->z[i][j].C);
+		}
 		free(s->z[i]);
 	}
 	
@@ -236,8 +240,10 @@ monstre CaseMonstre(salle s,hero h){
 void OuvrirCoffre(salle s,hero h){
 	if(s->z[h->x][h->y].C!=NULL){
 		if((s->z[h->x][h->y]).C->ouvert==faux){
-		
-		s->z[h->x][h->y].C->ouvert=vrai;
+			if ((s->z[h->x][h->y]).C->inv!=NULL) {
+				transfert((s->z[h->x][h->y]).C->inv,h->invHero);
+				s->z[h->x][h->y].C->ouvert=vrai;
+			}
 		}
 	}
 }

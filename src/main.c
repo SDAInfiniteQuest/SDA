@@ -16,11 +16,13 @@ int main(){
 	EffacerEcran();
 	hero h=creerHero();
 	monstre m;
+	coffre c=NULL;
 	ActiverModeRaw();
 	insererHero(test->s,h);
 	afficheSalle(test->s);
 	while(valmenu!=1){
 		AfficherVie(h);
+		afficherOr(h);
 		TitreSalle(test);
 		PlanquerCurseur();
 		entree=RecupererAppuiTouche();
@@ -33,7 +35,9 @@ int main(){
 		else if((deplacement(h,test->s,entree))==vrai){
 			test=changement_salle(h,test->s,test);
 			if ((m=CaseMonstre(test->s,h))!=NULL) {
-				mortHero=bataille(m,h);
+				if ((mortHero=bataille(m,h))==0) {
+					h->pieces+=m->pieces;
+				}
 			}
 			OuvrirCoffre(test->s,h);
 			afficheSalle(test->s);

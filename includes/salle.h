@@ -20,8 +20,8 @@ enum terrain {
 
 enum objet {
 	HERO,
-	MONSTRES,
-	COFFRES,
+	MONSTRE,
+	COFFRE,
 	NEUTRE         // Sinon toutes les cases sont forcement soit des monstres soit des heros soit des coffres
 };
 

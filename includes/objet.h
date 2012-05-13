@@ -20,7 +20,8 @@ enum bonus {
 typedef struct Coffre{
 	Bool ouvert;
 	enum tresor t;
-	int po;
+	int pieces;
+	inventaire inv;
 	enum bonus B;
 }str_coffre,*coffre;
 //fin coffre
@@ -34,6 +35,7 @@ typedef struct {
     char* nom;
 		int x;
 		int y;
+		int pieces;
     inventaire invHero;
 } strHero,*hero ;
 //fin hero
@@ -43,6 +45,7 @@ typedef struct {
 typedef struct {
 	int HP;
 	char *nom; 
+	int pieces;
 	inventaire invMobs;
 } *monstre, strMonstre;
 //fin monstre

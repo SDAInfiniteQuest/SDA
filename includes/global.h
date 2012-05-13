@@ -18,8 +18,11 @@ int menu();
 
 hero creerHero();
 monstre creerMonstre();
-void detruireiMonstre(monstre);
-void AfficherVie(hero h);
+coffre creerCoffre();
+void detruireCoffre(coffre);
+void detruireMonstre(monstre);
+void AfficherVie(hero);
+void afficherOr(hero);
 void PlanquerCurseur();
 void DetruireHero(hero h);
 

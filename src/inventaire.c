@@ -85,6 +85,19 @@ int nombreRef(inventaire inv) {
 	return ref;
 }
 
+inventaire transfert(inventaire invX, inventaire invHero) {
+	int i;
+	for(i=0;i<TAILLE_INVENTAIRE;i++) {
+		if (invX->it[i].tp.ref!=0) {
+			if (invHero->it[i].tp.ref==0) {
+				invHero=ajoutRef(invHero,invX->it[i].tp);
+			}
+			invHero=ajoutQte(invHero,invX->it[i].tp,invX->it[i].qte);
+		}
+	}
+	return invHero;
+}
+
 inventaire creerInvHero() {
 	inventaire inv=stockVide();
 
