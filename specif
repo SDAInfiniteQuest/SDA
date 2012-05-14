@@ -1,4 +1,8 @@
-Descritpions:
+Utilisez un terminale a fond noir.
+Le menu s'active en appuyant sur m.
+
+
+Descriptions:
 
 a./combat:
 On crée, pour le système de combat, deux listes chainées circulaires qui sont les deux paquets des monstres et du hero. Puis on compare tour a tour les cartes jusqu'à ce que l'un des deux paquets soit vide.
