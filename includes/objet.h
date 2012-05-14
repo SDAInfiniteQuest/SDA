@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "inventaire.h"
-
-typedef unsigned int Bool;
+/**
+ * \struct    Bool
+ * \brief     Un type booleen 
+ * \details   Pour certains test et return (lisibilite), 0 pour faux,1 pour vrai 
+ */
+typedef unsigned int Bool; /*!< Base sur un unsigned int */
 //coffre
 enum tresor {
 	OR,
@@ -16,38 +20,52 @@ enum bonus {
     BONUS2,
     BONUS3,
 };
-
+/**
+ * \struct    str_coffre
+ * \brief     Structure coffre contenant un inventaire et/ou des pieces (or) 
+ * \details   Contient un inventaire (cf: str_inv) 
+ */
 typedef struct Coffre{
-	Bool ouvert;
-	enum tresor t;
-	int pieces;
-	inventaire inv;
-	enum bonus B;
-}str_coffre,*coffre;
+	Bool ouvert; /*!< Un bool pour savoir si le coffre est ouvert ou non*/
+	enum tresor t; /*!< Une enum qui renseigne sur le contenu (un inventaire ou de l'or) */
+	int pieces; /*!< Nombre de pieces d'or. */
+	inventaire inv; /*!< L'inventaire associe. */
+	enum bonus B; /*!< Renseigne le type de bonus contenu. */
+}str_coffre,*coffre; /*!< coffre: pointeur sur la structure. */
 //fin coffre
 
 
 
 
 //debut hero
+/**
+ * \struct    strHero
+ * \brief     Structure definissant le hero  
+ * \details   Contient ses point de vie, son or,son inventaire et sa position x,y dans la salle.
+ */
 typedef struct {
-    int HP;
-    char* nom;
-		int x;
-		int y;
-		int pieces;
-    inventaire invHero;
-} strHero,*hero ;
+    int HP; /*!< Nombre de points de vie. */
+    char* nom; /*!< nom du hero. */
+		int x; /*!< Position x dans la salle. */
+		int y; /*!< Position y dans la salle. */
+		int pieces; /*!< Nombre de pieces. */
+    inventaire invHero; /*!< inventaire du hero. */
+} strHero,*hero ; /*!< hero: pointeur sur la structure. */
 //fin hero
 
 
 //debut monstre
+/**
+ * \struct    strMonstre
+ * \brief     Structure definissant un monstre  
+ * \details   Contient ses point de vie, son or,son inventaire.
+ */
 typedef struct {
-	int HP;
-	char *nom; 
-	int pieces;
-	inventaire invMobs;
-} *monstre, strMonstre;
+	int HP; /*!< Nombre de point de vie. */
+	char *nom; /*!< Nom du monstre. */
+	int pieces; /*!< Nombre de pieces. */
+	inventaire invMobs; /*!< Inventaire du monstre. */
+} *monstre, strMonstre; /*!< monstre: pointeur sur la structure. */
 //fin monstre
 
 #endif

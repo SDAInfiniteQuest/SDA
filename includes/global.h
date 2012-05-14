@@ -5,10 +5,10 @@
 #include "objet.h"
 #include "graphics.h"
 
-#define vrai 1
-#define faux 0
-#define NBR_MENU 1
-#define TAILLE_NOM_MAX 15
+#define vrai 1 								/**< Definition du booleen vrai */
+#define faux 0 								/**< Definition du booleen faux */
+#define NBR_MENU 1 						/**< Nombre d'elements dans le menu (0 compris) */
+#define TAILLE_NOM_MAX 15 		/**< Taille maximal du nom du hero */
 //#define TAILLE_BESTIAIRE 10
 
 
