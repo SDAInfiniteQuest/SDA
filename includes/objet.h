@@ -3,23 +3,44 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "inventaire.h"
+
+
+
 /**
  * \struct    Bool
  * \brief     Un type booleen 
  * \details   Pour certains test et return (lisibilite), 0 pour faux,1 pour vrai 
  */
 typedef unsigned int Bool; /*!< Base sur un unsigned int */
-//coffre
+
+
+
+//coffre---------------------------------------------------------------------------------------------------------------
+
+/**
+ * \enum     tresor
+ * \brief    Soit de l'or,soit un bonus (objets)
+ * \details   OR=0,BONUS=1
+ */
 enum tresor {
 	OR,
 	BONUS,
 };
 
+
+
+/**
+ * \enum     bonus
+ * \details   BONUS1=0,BONUS2=1,BONUS3=2
+ */
 enum bonus {
     BONUS1,
     BONUS2,
     BONUS3,
 };
+
+
+
 /**
  * \struct    str_coffre
  * \brief     Structure coffre contenant un inventaire et/ou des pieces (or) 
@@ -32,12 +53,14 @@ typedef struct Coffre{
 	inventaire inv; /*!< L'inventaire associe. */
 	enum bonus B; /*!< Renseigne le type de bonus contenu. */
 }str_coffre,*coffre; /*!< coffre: pointeur sur la structure. */
-//fin coffre
+
+//fin coffre-----------------------------------------------------------------------------------------------------------
 
 
 
 
-//debut hero
+//debut hero-----------------------------------------------------------------------------------------------------------
+
 /**
  * \struct    strHero
  * \brief     Structure definissant le hero  
@@ -51,10 +74,13 @@ typedef struct {
 		int pieces; /*!< Nombre de pieces. */
     inventaire invHero; /*!< inventaire du hero. */
 } strHero,*hero ; /*!< hero: pointeur sur la structure. */
-//fin hero
+
+//fin hero-------------------------------------------------------------------------------------------------------------
 
 
-//debut monstre
+
+//debut monstre--------------------------------------------------------------------------------------------------------
+
 /**
  * \struct    strMonstre
  * \brief     Structure definissant un monstre  
@@ -66,6 +92,7 @@ typedef struct {
 	int pieces; /*!< Nombre de pieces. */
 	inventaire invMobs; /*!< Inventaire du monstre. */
 } *monstre, strMonstre; /*!< monstre: pointeur sur la structure. */
-//fin monstre
+
+//fin monstre----------------------------------------------------------------------------------------------------------
 
 #endif

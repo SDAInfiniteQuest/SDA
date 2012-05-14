@@ -218,7 +218,7 @@ return faux;
 
 /*Si le hero rencontre un monstre en ce deplacant,on renvoie le monstre et on le supprime
  * de la salle*/
-monstre CaseMonstre(salle s,hero h,int entree){
+monstre CaseMonstre(salle s,hero h){
 	monstre ACombattre=NULL;
 	if(s->z[h->x][h->y].mobs!=NULL){
 		ACombattre=s->z[h->x][h->y].mobs;

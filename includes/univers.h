@@ -2,6 +2,8 @@
 #define _univers_h_
 #include "salle.h"
 #include "objet.h"
+
+
 /**
  * \struct    strUniv
  * \brief     Liste doublement chainee des salles du jeu.
@@ -15,6 +17,7 @@ typedef struct Univ {
 } *univ,strUniv; /*!< univ: pointeur sur la structure . */
 
 
+
 /**
  * \brief       Alloue en memoire un strUniv
  * \details     Alloue un strUniv et appelle remplirSalle() qui remplie aleatoirement la salle
@@ -22,6 +25,9 @@ typedef struct Univ {
  * @return    U L'univ alloue.
  */
 univ initUniv();
+
+
+
 /**
  * \brief       Renvoie l'univ de gauche de l'Univ passe en parametre
  * \details     Creer un Univ et le chaine a gauche de l'univ passer en parametre s'il n'existe pas
@@ -30,6 +36,9 @@ univ initUniv();
  * @return    U L'element de gauche de l'univ passe en parametre
  */
 univ elmtGauche(univ u);
+
+
+
 /**
  * \brief       Renvoie l'univ de droite de l'Univ passe en parametre
  * \details     Creer un Univ et le chaine a droite de l'univ passer en parametre s'il n'existe pas
@@ -38,6 +47,9 @@ univ elmtGauche(univ u);
  * @return    U L'element de droite de l'univ passe en parametre
  */
 univ elmtDroite(univ u);
+
+
+
 /**
  * \brief       Fonction de changement de salle
  * \details     Si le hero est sur le seuil d'une des portes de la salle il passe a la salle correspondante
@@ -48,12 +60,18 @@ univ elmtDroite(univ u);
  * @return    U renvoie l'univ correspant a la salle (a gauche ou a droite) ou le hero doit etre
  */
 univ changement_salle(hero h,salle s,univ univers);
+
+
+
 /**
  * \brief       Affiche le nom de la salle et son numero dans le terminal
  *
  * @param     univers L'univers courant 
  */
 void TitreSalle(univ univers);
+
+
+
 /**
  * \brief       Desalloue toute la liste doublement chainee 
  * \details     On se place sur l'element le plus a gauche du en desalloue vers la droite en desalouant les salles associees en appellant detruireSalle() .

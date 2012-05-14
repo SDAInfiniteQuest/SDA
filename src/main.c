@@ -33,7 +33,7 @@ int main(){
 		}
 		else if((deplacement(h,test->s,entree))==vrai){
 			test=changement_salle(h,test->s,test);
-			if ((m=CaseMonstre(test->s,h,entree))!=NULL) {
+			if ((m=CaseMonstre(test->s,h))!=NULL) {
 				if ((mortHero=bataille(m,h))==0) {
 					h->pieces+=m->pieces;
 				}

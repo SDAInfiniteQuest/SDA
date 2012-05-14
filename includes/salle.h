@@ -12,18 +12,33 @@
 #define MAX_MONSTRE 3       /**< Nombre maximal de monstres */
 #define NBR_MONSTRE_JEU 10  /**< Nombre de monstres different dans le jeu */
 
-//debut zone
+
+//debut zone---------------------------------------------------------------------------------------------------------------
+/**
+ * \enum     terrain
+ * \brief    Renseigne le type de "dalle"
+ * \details   MUR=0,SOL=1
+ */
 enum terrain {
 	MUR,
 	SOL
 };
 
+
+/**
+ * \enum     objet
+ * \brief    Renseigne le type "d'objet" sur une dalle (hero,monstre ou coffre)
+ * \details   HERO=0,MONSTRE=1,COFFRE=2,NEUTRE=3
+ */
 enum objet {
 	HERO,
 	MONSTRE,
 	COFFRE,
 	NEUTRE         // Sinon toutes les cases sont forcement soit des monstres soit des heros soit des coffres
 };
+
+
+
 /**
  * \struct    zone
  * \brief     Une zone (une dalle de la salle) et tout ce quelle contient  
@@ -37,7 +52,11 @@ typedef struct {
 	monstre mobs; /*!< Pointe sur le monstre qui se trouve sur cette zone, sinon NULL. */
 	coffre C; /*!< Pointe sur le coffre qui se trouve sur cette zone, sinon NULL. */
 } zone;
-//fin zone
+
+//fin zone-----------------------------------------------------------------------------------------------------------------
+
+
+
 /**
  * \struct    strSalle
  * \brief     Uns salle, qui est composee de zones (dalles)  
@@ -48,6 +67,9 @@ typedef struct salle {
 	zone **z; /*!< La matrice de zones. */
 	int taille;      /*!< Taille de la salle. */ // vu que c'est creer aleatoirement mieux vos stocker la taille de la salle dans la str
 } *salle, strSalle; /*!< salle: pointeur sur la structure. */
+
+
+
 /**
  * \brief       Donne un nombre aleatoire entre a et b compris. 
  *
@@ -56,6 +78,9 @@ typedef struct salle {
  * @return    resultat un int: le nombre aleatoire obtenu.
  */
 int randIntervalle(int a,int b);
+
+
+
 /**
  * \brief       Alloue la memoire pour une salle
  * \details     On initialise tout les pointeur sur hero,monstre et coffre a NULL,et le numero salle est egale a la variable global numeroSalle qu'on incremente. 
@@ -63,6 +88,9 @@ int randIntervalle(int a,int b);
  * @return    s Le pointeur sur la salle alloue.
  */
 salle creerSalle();
+
+
+
 /**
  * \brief       Creer aleatoirement un contenu de salle donnee.
  * \details     On passe tout les zones de la matrice en sol, avec un objet NEUTRE dessus, puis on rajoute les murs sur le cote de la salle, les monstres en les creant aleatoirement,les coffre en les creant aleatoirement, puis les mur aleatoire au milieux de la salle. 
@@ -70,13 +98,19 @@ salle creerSalle();
  * @param     s une salle deja alloue en memoire 
  * @return    S une salle rempli aleatoirement de monstres,coffres et murs.
  */
-salle remplirSalle(salle s); 
+salle remplirSalle(salle s);
+
+
+ 
 /**
  * \brief       Desalloue une salle
  *
  * @param     s la salle a free.
  */                         
 void detruireSalle(salle s);
+
+
+
 /**
  * \brief       Affiche une salle
  * \details     Affiche une salle dans le terminal,avec des murs en blanc, et des indication (M,H,C) en couleurs  	*pour les hero,monstre et coffre.
@@ -84,6 +118,9 @@ void detruireSalle(salle s);
  * @param     s La salle a afficher
  */
 void afficheSalle(salle s);
+
+
+
 /**
  * \brief       Insere le hero sur la premiere salle creer (debut du jeu)
  * \details     Le hero est inserer sur la zone (2,2) de la premiere salle
@@ -92,6 +129,9 @@ void afficheSalle(salle s);
  * @param     h Le hero a inserer.
  */
 void insererHero(salle s,hero h);
+
+
+
 /**
  * \brief       Fonction de deplacement
  * \details     Le hero est bloquer par les murs,si le deplacement n'est pas possible le fonction renvoie le bool faux. 
@@ -102,6 +142,9 @@ void insererHero(salle s,hero h);
  * @return    B renvoie vrai si le deplacement est possible sinon faux.
  */
 Bool deplacement(hero h,salle s,int entree);
+
+
+
 /**
  * \brief       Ouvre un coffre et le hero recupere le contenu
  * \details     Le hero recupere de l'or ou des items (cartes,potion..) contenu dans le coffre.
@@ -110,6 +153,9 @@ Bool deplacement(hero h,salle s,int entree);
  * @param     h Le hero qui recupere le contenu du coffre
  */
 void OuvrirCoffre(salle s,hero h);
+
+
+
 /**
  * \brief       Renvoie un monstre s'il est sur la case du hero,sinon renvoie NULL 
  *
@@ -118,4 +164,5 @@ void OuvrirCoffre(salle s,hero h);
  * @return    M Le pointeur sur le monstre,si monstre il ya , sinon revoie NULL.
  */
 monstre CaseMonstre(salle s, hero h);
+
 #endif
