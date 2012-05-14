@@ -67,7 +67,23 @@ axiomes:
 																quantite(in,t2) sinon
 	nombreRef(ajoutRef(inv,t1))=nombreRef(inv)+1
 	
-	
-	
+c./univers
+
+operations:
+	InitUniv: _ -> univ
+	elmtGauche: univ -> univ
+	elmtDroite: univ -> univ
+	changement_salle: univ, hero, salle -> univ
+	TitreSalle: univ ->_
+	DetruireUnivers: univ ->_
+
+pre-conditions: univ u,hero h t,salle s
+	pre(elmtGauche(u))= u!=NULL
+	pre(elmtDroite(u))= u!=NULL
+
+axiomes:
+	elmtGauche(elmtDroite(u))=u
+	elmtDroite(elmtGauche(u))=u si u->numero > 1
+		
 	
 

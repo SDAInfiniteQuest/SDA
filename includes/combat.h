@@ -1,3 +1,14 @@
+/**
+* \file combat.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de combat.c
+*
+* \details Contient les prototype des fonctions relative au combat dans le jeu.
+*
+*/
+
 #ifndef _combat_h_
 #define _combat_h_
 #include<stdlib.h>

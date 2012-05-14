@@ -1,3 +1,17 @@
+/**
+* \file salle.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de salle.c
+*
+* \details Contient les prototype des fonctions relative au salle.
+*
+*/
+
+
+
+
 #ifndef _salle_h_
 #define _salle_h_
 #include "objet.h"

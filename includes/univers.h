@@ -1,3 +1,16 @@
+/**
+* \file univers.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de univers.c
+*
+* \details Contient les prototype des fonctions relative a l'environnement de jeu.
+*
+*/
+
+
+
 #ifndef _univers_h_
 #define _univers_h_
 #include "salle.h"

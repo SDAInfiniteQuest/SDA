@@ -1,3 +1,14 @@
+/**
+* \file global.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de global.c
+*
+* \details Contient les prototype des fonctions "universelles" et/ou d'affichage.
+*
+*/
+
 #ifndef _global_h_
 #define _global_h_
 #include <stdlib.h>

@@ -1,3 +1,16 @@
+/**
+* \file objet.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de objet.c
+*
+* \details Contient les structure des objet (Entites) du jeu.
+*
+*/
+
+
+
 #ifndef _objet_h_
 #define _objet_h_
 #include <stdlib.h>

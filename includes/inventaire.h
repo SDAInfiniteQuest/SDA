@@ -1,3 +1,14 @@
+/**
+* \file inventaire.h
+* \author Pallamidessi joseph, Andreux simon
+* \version 1.0
+* \date 14 mai 2012
+* \brief Header de inventaire.c
+*
+* \details Contient les prototype des fonctions et structure relative a l'inventaire et a la gestion de l'inventaire.
+*
+*/
+
 #ifndef _inventaire_h_
 #define _inventaire_h_
 #include<stdio.h>
