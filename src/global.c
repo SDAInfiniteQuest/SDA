@@ -288,10 +288,13 @@ void detruireMonstre(monstre m) {
 /*Creation et destruction d'un coffre*/
 
 coffre creerCoffre() {
-	coffre c=(coffre) calloc(1,sizeof(str_coffre));
+	coffre c=(str_coffre*) calloc(1,sizeof(str_coffre));
+	c->ouvert=faux;
 	c->t=rand()%2;
-	if (c->t==OR) c->pieces=rand()%10+1;
-	if (c->t==BONUS) c->inv=creerInvCoffre();
+	if (c->t==OR) 
+		c->pieces=rand()%10+1;
+	if (c->t==BONUS) 
+		c->inv=creerInvCoffre();
 	return c;
 }
 
@@ -316,6 +319,8 @@ void AfficherVie(hero h){
 	}
 	ReinitialiserCouleur();
 }
+
+
 /*affiche l'or du hero*/
 void afficherOr(hero h) {
 	SePositionner(40,23);
@@ -330,5 +335,189 @@ void DetruireHero(hero h){
 	free(h);
 } 
 
+/*GameOver*/
+void GameOver(hero h){
+int s;	
+if(h->HP==0){
 
+		EffacerEcran();
+		ChangerCouleurFond(37);
+		/*G*/
+		SePositionner(10,10);
+		printf(" ");
+		SePositionner(11,10);
+		printf(" ");
+		SePositionner(12,11);
+		printf(" ");
+		SePositionner(9,11);
+		printf(" ");
+		SePositionner(9,12);
+		printf(" ");
+		SePositionner(9,13);
+		printf(" ");
+		SePositionner(10,14);
+		printf(" ");
+		SePositionner(11,14);
+		printf(" ");
+		SePositionner(12,13);
+		printf(" ");
+		SePositionner(11,12);
+		printf(" ");
+		/*A*/
+		SePositionner(15,10);
+		printf(" ");
+		SePositionner(14,11);
+		printf(" ");
+		SePositionner(16,11);
+		printf(" ");
+		SePositionner(14,12);
+		printf(" ");
+		SePositionner(15,12);
+		printf(" ");
+		SePositionner(16,12);
+		printf(" ");
+		SePositionner(14,13);
+		printf(" ");
+		SePositionner(16,13);
+		printf(" ");
+		/*M*/
+		SePositionner(18,10);
+		printf(" ");
+		SePositionner(18,11);
+		printf(" ");
+		SePositionner(18,12);
+		printf(" ");
+		SePositionner(18,13);
+		printf(" ");
+		SePositionner(19,11);
+		printf(" ");
+		SePositionner(20,12);
+		printf(" ");
+		SePositionner(21,13);
+		printf(" ");
+		SePositionner(22,12);
+		printf(" ");
+		SePositionner(23,11);
+		printf(" ");
+		SePositionner(24,10);
+		printf(" ");
+		SePositionner(25,10);
+		printf(" ");
+		SePositionner(25,11);
+		printf(" ");
+		SePositionner(25,12);
+		printf(" ");
+		SePositionner(25,13);
+		printf(" ");
+		/*E*/
+		SePositionner(27,10);
+		printf(" ");
+		SePositionner(28,10);
+		printf(" ");
+		SePositionner(29,10);
+		printf(" ");
+		SePositionner(30,10);
+		printf(" ");
+		SePositionner(27,11);
+		printf(" ");
+		SePositionner(27,12);
+		printf(" ");
+		SePositionner(27,13);
+		printf(" ");
+		SePositionner(28,11);
+		printf(" ");
+		SePositionner(29,11);
+		printf(" ");
+		SePositionner(28,13);
+		printf(" ");
+		SePositionner(29,13);
+		printf(" ");
+		SePositionner(30,13);
+		printf(" ");
+		/*O*/
+		SePositionner(15,15);
+		printf(" ");
+		SePositionner(16,15);
+		printf(" ");
+		SePositionner(17,16);
+		printf(" ");
+		SePositionner(17,17);
+		printf(" ");
+		SePositionner(16,18);
+		printf(" ");
+		SePositionner(15,18);
+		printf(" ");
+		SePositionner(14,16);
+		printf(" ");
+		SePositionner(14,17);
+		printf(" ");
+		/*V*/
+		SePositionner(19,15);
+		printf(" ");
+		SePositionner(20,16);
+		printf(" ");
+		SePositionner(21,17);
+		printf(" ");
+		SePositionner(22,18);
+		printf(" ");
+		SePositionner(23,17);
+		printf(" ");
+		SePositionner(24,16);
+		printf(" ");
+		SePositionner(25,15);
+		printf(" ");
+		/*E*/
+		SePositionner(27,15);
+		printf(" ");
+		SePositionner(28,15);
+		printf(" ");
+		SePositionner(29,15);
+		printf(" ");
+		SePositionner(30,15);
+		printf(" ");
+		SePositionner(28,16);
+		printf(" ");
+		SePositionner(29,16);
+		printf(" ");
+		SePositionner(28,18);
+		printf(" ");
+		SePositionner(29,18);
+		printf(" ");
+		SePositionner(30,18);
+		printf(" ");
+		SePositionner(27,16);
+		printf(" ");
+		SePositionner(27,17);
+		printf(" ");
+		SePositionner(27,18);
+		printf(" ");
+		/*R*/
+		SePositionner(32,15);
+		printf(" ");
+		SePositionner(33,15);
+		printf(" ");
+		SePositionner(34,15);
+		printf(" ");
+		SePositionner(34,16);
+		printf(" ");
+		SePositionner(32,16);
+		printf(" ");
+		SePositionner(32,17);
+		printf(" ");
+		SePositionner(32,18);
+		printf(" ");
+		SePositionner(33,17);
+		printf(" ");
+		SePositionner(34,17);
+		printf(" ");
+		SePositionner(35,18);
+		printf(" ");
+		SePositionner(35,16);
+		printf(" ");
 
+		ReinitialiserCouleur();
+		SePositionner(20,21);
+		printf("Appuyez sur n'importe quelle touches...");
+		scanf("%d",&s);
+	}
+}

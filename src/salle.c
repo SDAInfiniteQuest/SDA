@@ -137,8 +137,8 @@ void detruireSalle(salle s){
 
 	for (i=0;i<s->taille;i++){
 		for(j=0;j<s->taille;j++) {
-			if (s->z[i][j].obj==MONSTRE) detruireMonstre(s->z[i][j].mobs);
-			if (s->z[i][j].obj==COFFRE) detruireCoffre(s->z[i][j].C);
+			if (s->z[i][j].mobs!=NULL) detruireMonstre(s->z[i][j].mobs);
+			if (s->z[i][j].C!=NULL) detruireCoffre(s->z[i][j].C);
 		}
 		free(s->z[i]);
 	}
@@ -150,82 +150,75 @@ void detruireSalle(salle s){
 Bool deplacement(hero h,salle s,int entree){
 	/*Deplacement vers le bas*/
 	if(entree==TOUCHE_FLECHE_BAS){
-		if(h->y<s->taille-2){
-			s->z[h->x][h->y].obj=NEUTRE;
-			s->z[h->x][h->y].H=NULL;
-			s->z[h->x][h->y+1].obj=HERO;		
-			s->z[h->x][h->y+1].H=h;
-			h->y=h->y+1;
-			return vrai;
+		if(h->y<s->taille-1){
+			if(s->z[h->x][h->y+1].ter==MUR)
+				return faux;
+			else{
+				s->z[h->x][h->y].obj=NEUTRE;
+				s->z[h->x][h->y].H=NULL;
+				s->z[h->x][h->y+1].obj=HERO;		
+				s->z[h->x][h->y+1].H=h;
+				h->y=h->y+1;
+				return vrai;
+			}
 		}
 	}
 	else
 		/*Deplacement vers le haut*/
 		if(entree==TOUCHE_FLECHE_HAUT){
 			if(h->y>1){
-				s->z[h->x][h->y].obj=NEUTRE;
-				s->z[h->x][h->y].H=NULL;
-				s->z[h->x][h->y-1].obj=HERO;		
-				s->z[h->x][h->y-1].H=h;		
-				h->y=h->y-1;
-			return vrai;
+				if(s->z[h->x][h->y-1].ter==MUR)
+					return faux;
+				else{
+					s->z[h->x][h->y].obj=NEUTRE;
+					s->z[h->x][h->y].H=NULL;
+					s->z[h->x][h->y-1].obj=HERO;		
+					s->z[h->x][h->y-1].H=h;		
+					h->y=h->y-1;
+				return vrai;
+				}
 			}
 		}
 	else
 		/*deplacement a droite*/
 		if(entree==TOUCHE_FLECHE_DROITE){
-			if(h->x<s->taille-2){
-				s->z[h->x][h->y].obj=NEUTRE;
-				s->z[h->x][h->y].H=NULL;
-				s->z[h->x+1][h->y].obj=HERO;		
-				s->z[h->x+1][h->y].H=h;		
-				h->x=h->x+1;
-			return vrai;
+			if(h->x<s->taille-1){
+				if(s->z[h->x+1][h->y].ter==MUR)
+					return faux;
+				else{
+					s->z[h->x][h->y].obj=NEUTRE;
+					s->z[h->x][h->y].H=NULL;
+					s->z[h->x+1][h->y].obj=HERO;		
+					s->z[h->x+1][h->y].H=h;		
+					h->x=h->x+1;
+				return vrai;
+				}
 			}
 		}
 	else 
 		/*deplacement a gauche*/
 		if(entree==TOUCHE_FLECHE_GAUCHE){
-			if(h->x>1){
-				s->z[h->x][h->y].obj=NEUTRE;
-				s->z[h->x][h->y].H=NULL;
-				s->z[h->x-1][h->y].obj=HERO;		
-				s->z[h->x-1][h->y].H=h;		
-				h->x=h->x-1;
-			return vrai;
+			if(h->x>0){
+				if(s->z[h->x-1][h->y].ter==MUR)
+					return faux;
+				else{
+					s->z[h->x][h->y].obj=NEUTRE;
+					s->z[h->x][h->y].H=NULL;
+					s->z[h->x-1][h->y].obj=HERO;		
+					s->z[h->x-1][h->y].H=h;		
+					h->x=h->x-1;
+				return vrai;
+				}
 			}
 		}
 
-	 /*Deplacement dans le cas des portes gauche et droite*/
-		if(entree==TOUCHE_FLECHE_GAUCHE){
-			if(h->x==1 && h->y==(s->taille/2)){
-				s->z[h->x][h->y].obj=NEUTRE;
-				s->z[h->x][h->y].H=NULL;
-
-				s->z[h->x-1][h->y].obj=HERO;		
-				s->z[h->x-1][h->y].H=h;		
-				h->x=h->x-1;
-			return vrai;
-			}
-		}
-		else if(entree==TOUCHE_FLECHE_DROITE){
-			if(h->x==s->taille-2 && h->y==s->taille/2){
-				s->z[h->x][h->y].obj=NEUTRE;
-				s->z[h->x][h->y].H=NULL;
-
-				s->z[h->x+1][h->y].obj=HERO;		
-				s->z[h->x+1][h->y].H=h;		
-				h->x=h->x+1;
-			return vrai;
-			}
-		}
 /*retourne faux s'il n'y a pas de mouvement reussie*/
 return faux;		
 }
 
 /*Si le hero rencontre un monstre en ce deplacant,on renvoie le monstre et on le supprime
  * de la salle*/
-monstre CaseMonstre(salle s,hero h){
+monstre CaseMonstre(salle s,hero h,int entree){
 	monstre ACombattre=NULL;
 	if(s->z[h->x][h->y].mobs!=NULL){
 		ACombattre=s->z[h->x][h->y].mobs;
@@ -244,6 +237,8 @@ void OuvrirCoffre(salle s,hero h){
 				transfert((s->z[h->x][h->y]).C->inv,h->invHero);
 				s->z[h->x][h->y].C->ouvert=vrai;
 			}
+			else
+				h->pieces+=s->z[h->x][h->y].C->pieces;
 		}
 	}
 }

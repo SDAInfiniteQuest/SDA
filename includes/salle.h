@@ -48,5 +48,5 @@ void afficheSalle(salle s);
 void insererHero(salle s,hero h);
 Bool deplacement(hero h,salle s,int entree);
 void OuvrirCoffre(salle s,hero h);
-monstre CaseMonstre(salle s, hero h);
+monstre CaseMonstre(salle s, hero h,int entree);
 #endif

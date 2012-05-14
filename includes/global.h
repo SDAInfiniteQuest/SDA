@@ -25,7 +25,7 @@ void AfficherVie(hero);
 void afficherOr(hero);
 void PlanquerCurseur();
 void DetruireHero(hero h);
-
+void GameOver(hero h);
 
 
 
