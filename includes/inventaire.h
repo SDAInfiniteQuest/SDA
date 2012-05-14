@@ -8,7 +8,11 @@
 
 enum typeItem { CARTE, POTION };
 
-//type carte
+/**
+ * \struct    carte
+ * \brief     
+ * \details   
+ */
 typedef struct { 
 	int ref;
 	enum typeItem tpIt;
@@ -18,7 +22,11 @@ typedef struct {
 	int defense;
 } carte; 
 
-//type potion
+/**
+ * \struct    potion
+ * \brief    
+ * \details   
+ */
 typedef struct {
 	int ref;
 	enum typeItem tpIt;
@@ -26,55 +34,145 @@ typedef struct {
 	int HP;
 } potion;
 
-//type item
+/**
+ * \struct    item
+ * \brief     potion ou cartes
+ * \details   
+ */
 typedef union {
 	int ref;
 	carte card;
 	potion po;
 } type;
-
+/**
+ * \struct    items
+ * \brief     potion ou cartes avec la quantite
+ * \details   
+ */
 typedef struct {
 	type tp;
 	int qte;
 } item; 
 
-//type inventaire
+/**
+ * \struct    inventaire
+ * \brief     contient la place libre et un tableau des objets indexé par leurs références
+ * \details   
+ */
 typedef struct {
 	item it[TAILLE_INVENTAIRE];
 	int place;
 } *inventaire, str_inventaire;
-
+/**
+ * \brief       initie un pointeru vers NULL
+ * \details     
+ *
+ * @return    renvoie un inventaire NULL
+ */
 inventaire stockVide();
+/**
+ * \brief       ajoute une reference
+ * \details     
+ *
+ * @param 		inventaire NULL
+ * @param 		objet a ajouter
+ * @return    un inventaire vide
+ */
 inventaire ajoutRef(inventaire, type);
+/**
+ * \brief       supprime une reference
+ * \details     
+ *
+ * @param 		inventaire
+ * @param 		objet a enlever
+ * @return    renvoie un inventaire
+ */
 inventaire supprRef(inventaire, type);
+/**
+ * \brief       ajoute quantite
+ * \details     
+ *
+ * @param 		inventaire
+ * @param 		objet a ajouter
+ * @param 		quantite a ajouter
+ * @return    renvoie un inventaire
+ */
 inventaire ajoutQte(inventaire, type, int);
+/**
+ * \brief       enlever quantite
+ * \details     
+ *
+ * @param 		inventaire
+ * @param 		objet a enlever
+ * @param 		quantite a enlever
+ * @return    renvoie un inventaire 
+ */
 inventaire supprQte(inventaire, type, int);
+/**
+ * \brief       test si l'inventaire est vide
+ * \details     
+ *
+ * @param 		inventaire
+ * @return    renvoie un booleen
+ */
 int estVide(inventaire);
+/**
+ * \brief       test si une reference existe
+ * \details     
+ *
+ * @param 		inventaire
+ * @param 		objet a enlever
+ * @return    renvoie un booleen
+ */
 int existe(inventaire, type);
+/**
+ * \brief       verifie la quantite d'un objet referencé
+ * \details     
+ *
+ * @param 		inventaire
+ * @param 		objet 
+ * @return    renvoie un entier
+ */
 int quantite(inventaire, type);
+/**
+ * \brief       renvoiue le nombre de reference
+ * \details     
+ *
+ * @param 		inventaire
+ * @return    renvoie un entier
+ */
 int nombreRef(inventaire);
-
-
+/**
+ * \brief       transfert le contenu d'un inventaire vers un autre
+ * \details     
+ *
+ * @param 		inventaire source
+ * @param 		inventaire arrive
+ * @return    renvoie un inventaire
+ */
 inventaire transfert(inventaire, inventaire);
+/**
+ * \brief       cree un inventaire pour le hero
+ * \details     
+ *
+ * @return    renvoie un inventaire
+ */
 inventaire creerInvHero();
+/**
+ * \brief       cree un inventaire pour le monstre
+ * \details     
+ *
+ * @return    renvoie un inventaire
+ */
 inventaire creerInvMobs();
+/**
+ * \brief       cree un inventaire pour le coffre
+ * \details     
+ *
+ * @return    renvoie un inventaire
+ */
 inventaire creerInvCoffre();
 
-//objets de base de l'inventaire
-/*
-extern type potSante = {.po={POTION, 1, "potion de soin", 5}} ;
-extern type fantassin = {.card={CARTE, 20, "fantassin", 4, 3, 2}};
-extern type guerrier = {.card={CARTE, 21, "guerrier", 6, 8, 4}};
-extern type barbare = {.card={CARTE, 22, "barbare", 10, 7, 3}};
-extern type tour = {.card={CARTE, 23, "tour", 30, 5, 0}};
-extern type sorcier = {.card={CARTE, 24, "sorcier", 15, 4, 1}};
-*/
-/*type tabCarte[NOMBRE_DE_CARTES]={
-	{.po={POTION, 1, "potion de soin", 5}},
-	{ CARTE, 21, "guerrier", 6, 8, 4 },
-	{ CARTE, 22, "barbare", 10,7, 3 },
-	{ CARTE, 23, "tour", 30, 6, 0 }
-};*/
 
 
 #endif
